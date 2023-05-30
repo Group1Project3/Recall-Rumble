@@ -13,7 +13,7 @@ function Navbar({ isAuthenticated }) {
         <div className="navbar-menu">
           <ul>
             <li>
-              <Link to="/game">Game</Link>
+              <Link to="/game">Games</Link>
             </li>
             <li>
               <Link to="/profile">Profile</Link>
