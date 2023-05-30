@@ -1,4 +1,5 @@
 // basic setup for resolvers
+// need to be modified to accommodate new content (remove book content)
 const { AuthenticationError } = require('apollo-server-express');
 const { User } = require('../models');
 const { signToken } = require('../utils/auth');

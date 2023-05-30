@@ -74,3 +74,103 @@ export const REMOVE_BOOK = gql`
     }
   }
 `;
+
+
+// template code for reference
+// import { gql } from '@apollo/client';
+
+// export const USER_LOGIN = gql`
+//   mutation login($email: String!, $password: String!) {
+//     login(email: $email, password: $password) {
+//       token
+//       user {
+//         _id
+//         username
+//       }
+//     }
+//   }
+// `;
+
+// export const CREATE_USER = gql`
+//   mutation CreateUser($username: String!, $email: String!, $password: String!) {
+//     createUser(username: $username, email: $email, password: $password) {
+//       token
+//       user {
+//         _id
+//         username
+//       }
+//     }
+//   }
+// `;
+
+// export const ADD_COMMENT = gql`
+//   mutation AddComment($gameId: ID!, $comment: String!) {
+//     addComment(gameId: $gameId, comment: $comment) {
+//       _id
+//       name
+//       highscore
+//       comments {
+//         _id
+//         text
+//       }
+//     }
+//   }
+// `;
+
+// export const EDIT_COMMENT = gql`
+//   mutation EditComment($commentId: ID!, $text: String!) {
+//     editComment(commentId: $commentId, text: $text) {
+//       _id
+//       name
+//       highscore
+//       comments {
+//         _id
+//         text
+//       }
+//     }
+//   }
+// `;
+
+// export const DELETE_COMMENT = gql`
+//   mutation DeleteComment($commentId: ID!) {
+//     deleteComment(commentId: $commentId) {
+//       _id
+//       name
+//       highscore
+//       comments {
+//         _id
+//         text
+//       }
+//     }
+//   }
+// `;
+
+// export const SET_SCORE = gql`
+//   mutation SetScore($gameId: ID!, $score: Int!) {
+//     setScore(gameId: $gameId, score: $score) {
+//       _id
+//       name
+//       highscore
+//     }
+//   }
+// `;
+
+// export const UPDATE_SCORE = gql`
+//   mutation UpdateScore($gameId: ID!, $score: Int!) {
+//     updateScore(gameId: $gameId, score: $score) {
+//       _id
+//       name
+//       highscore
+//     }
+//   }
+// `;
+
+// export const DELETE_SCORE = gql`
+//   mutation DeleteScore($gameId: ID!) {
+//     deleteScore(gameId: $gameId) {
+//       _id
+//       name
+//       highscore
+//     }
+//   }
+// `;
