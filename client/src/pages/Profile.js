@@ -1,5 +1,7 @@
 import React from 'react';
 import { Jumbotron, Container } from 'react-bootstrap';
+// temporary es lint disable until implemented
+// eslint-disable-next-line no-unused-vars
 import Auth from '../utils/auth';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';

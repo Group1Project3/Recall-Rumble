@@ -5,6 +5,8 @@ import { GET_ME } from '../utils/queries';
 
 const Games = () => {
   const { loading, data } = useQuery(GET_ME);
+  // temporary es lint disable until implemented
+  // eslint-disable-next-line no-unused-vars
   const userData = data?.me || {};
 
   if (loading) {
