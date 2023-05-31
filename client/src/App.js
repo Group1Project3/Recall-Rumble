@@ -1,37 +1,50 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Register from './components/Register';
-import Login from './components/Login';
-import ProtectedRoute from './components/ProtectedRoute';
-import Dashboard from './components/Dashboard';
-import Game from './components/Game';
-import Profile from './components/Profile';
-import Leaderboard from './components/Leaderboard';
-import Logout from './components/Logout';
-import Navbar from './components/navbar';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
+import { setContext } from '@apollo/client/link/context';
 
-// Import statements...
+import SearchBooks from './pages/SearchBooks';
+import Navbar from './components/Navbar';
+import Games from './pages/Game';
+import Profile from './pages/Profile';
+import Leaderboard from './pages/Leaderboard';
+
+const httpLink = createHttpLink({
+  uri: '/graphql',
+});
+
+const authLink = setContext((_, { headers }) => {
+  const token = localStorage.getItem('id_token');
+  return {
+    headers: {
+      ...headers,
+      authorization: token ? `Bearer ${token}` : '',
+    },
+  };
+});
+
+const client = new ApolloClient({
+  link: authLink.concat(httpLink),
+  cache: new InMemoryCache(),
+});
 
 function App() {
-  const isAuthenticated = false; // Replace with your authentication logic
-
   return (
-    <Router>
-      <Navbar />
-
-      <Switch>
-        <Route exact path="/register" component={Register} />
-        <Route exact path="/login" component={Login} />
-        <ProtectedRoute
-          exact
-          path="/dashboard"
-          component={Dashboard}
-          isAuthenticated={isAuthenticated}
-        />
-      </Switch>
-    </Router>
+    <ApolloProvider client={client}>
+      <Router>
+        <>
+          <Navbar />
+          <Routes>
+            <Route path='/' element={<SearchBooks />} />
+            <Route path='/Game' element={<Games />} />
+            <Route path='/Profile' element={<Profile />} />
+            <Route path='/Leaderboard' element={<Leaderboard />} />
+            <Route path='*' element={<h1 className='display-2'>Wrong page!</h1>} />
+          </Routes>
+        </>
+      </Router>
+    </ApolloProvider>
   );
 }
 
 export default App;
-
