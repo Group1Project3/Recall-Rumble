@@ -1,5 +1,5 @@
 // Load database models
 const User = require('./User');
-const Book = require("./Book");
+const Score = require("./Score");
 
-module.exports = { User, Book };
+module.exports = { User, Score };
