@@ -34,6 +34,7 @@ export const ADD_USER = gql`
   }
 `;
 
+
 // template code for reference
 // import { gql } from '@apollo/client';
 
