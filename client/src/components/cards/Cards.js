@@ -1,5 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import CardItem from './CardItem';
+import { useQuery } from '@apollo/client';
+import { GET_ME } from '../../utils/queries';
 import { Row, Col } from 'antd';
 
 // declare props and initial state
@@ -15,6 +17,8 @@ const Cards = ({
   const [currCards, setCurrCards] = useState([]);
   const [disableClick, setDisableClick] = useState(false);
   const [count, setCount] = useState(1);
+  const { data } = useQuery(GET_ME);
+  const userData = data?.me || {};
 
   useEffect(() => {
     // declare number of cards based on level
