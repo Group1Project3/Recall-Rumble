@@ -73,5 +73,5 @@ const AppNavigationBar = () => {
   );
 };
 
-export default AppNavigationBar;
 
+export default AppNavigationBar;
