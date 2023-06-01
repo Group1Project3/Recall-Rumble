@@ -3,8 +3,7 @@ import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@apollo/client';
 import { setContext } from '@apollo/client/link/context';
 
-import SearchBooks from './pages/SearchBooks';
-import Navbar from './components/navbar';
+import Navbar from './components/Navigationbar';
 import Games from './pages/Game';
 import Profile from './pages/Profile';
 import Leaderboard from './pages/Leaderboard';
@@ -35,7 +34,7 @@ function App() {
         <>
           <Navbar />
           <Routes>
-            <Route path='/' element={<SearchBooks />} />
+            <Route path='/' element={<Games />} />
             <Route path='/Game' element={<Games />} />
             <Route path='/Profile' element={<Profile />} />
             <Route path='/Leaderboard' element={<Leaderboard />} />

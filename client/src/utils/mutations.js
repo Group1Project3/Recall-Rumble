@@ -25,7 +25,6 @@ export const ADD_USER = gql`
         email
         highScore
         lastScore
-        friendCount
         friends {
           _id
         }
@@ -33,6 +32,7 @@ export const ADD_USER = gql`
     }
   }
 `;
+
 
 // template code for reference
 // import { gql } from '@apollo/client';
