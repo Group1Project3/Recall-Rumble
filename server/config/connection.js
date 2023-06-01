@@ -3,7 +3,7 @@ const mongoose = require('mongoose');
 
 // Connect to MongoDB using Mongoose
 mongoose.connect(
-  process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/googlebooks', // MongoDB connection URI
+  process.env.MONGODB_URI || 'mongodb://127.0.0.1:27017/RecallRumble', // MongoDB connection URI
   {
     useNewUrlParser: true, // Use new URL parser
     useUnifiedTopology: true, // Use new server discovery and monitoring engine

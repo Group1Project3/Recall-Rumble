@@ -1,7 +1,9 @@
 import React from 'react';
-import { Jumbotron, Container } from 'react-bootstrap';
+import { Typography, Row, Col } from 'antd';
 import { useQuery } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
+
+const { Title } = Typography;
 
 const Leaderboard = () => {
   const { loading, data } = useQuery(GET_ME);
@@ -16,29 +18,31 @@ const Leaderboard = () => {
 
   return (
     <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Leaderboard</h1>
-        </Container>
-      </Jumbotron>
-      <Container>
-        <h2>Top Players:</h2>
-        {leaderboardData.length > 0 ? (
-          <ul>
-            {leaderboardData.map((player, index) => (
-              <li key={player.id}>
-                <p>
-                  <span>{index + 1}. </span>
-                  <span>{player.name}</span>
-                  <span> - Score: {player.score}</span>
-                </p>
-              </li>
-            ))}
-          </ul>
-        ) : (
-          <p>No data available</p>
-        )}
-      </Container>
+      <Row justify="center" align="middle" style={{ height: '100px', background: '#000', color: '#fff' }}>
+        <Col>
+          <Title level={1} style={{ color: '#fff' }}>Leaderboard</Title>
+        </Col>
+      </Row>
+      <Row justify="center" style={{ marginTop: '20px' }}>
+        <Col>
+          <Title level={2}>Top Players:</Title>
+          {leaderboardData.length > 0 ? (
+            <ul>
+              {leaderboardData.map((player, index) => (
+                <li key={player.id}>
+                  <p>
+                    <span>{index + 1}. </span>
+                    <span>{player.name}</span>
+                    <span> - Score: {player.score}</span>
+                  </p>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <p>No data available</p>
+          )}
+        </Col>
+      </Row>
     </>
   );
 };
