@@ -25,7 +25,6 @@ export const ADD_USER = gql`
         email
         highScore
         lastScore
-        friendCount
         friends {
           _id
         }
