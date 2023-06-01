@@ -21,8 +21,19 @@ const userSchema = new Schema(
       type: String,
       required: true,
     },
-    // set savedBooks to be an array of data that adheres to the bookSchema
-    savedBooks: [bookSchema],
+    highScore: {
+      type: Number,
+    },
+    lastScore: {
+      type: Number
+    },
+    // Store IDs of friends
+    friends: [
+      {
+          type: Schema.Types.ObjectId,
+          ref: 'User'
+      }
+    ],
   },
   // set this to use virtual below
   {
@@ -47,9 +58,9 @@ userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
 
-// when we query a user, we'll also get another field called `bookCount` with the number of saved books we have
-userSchema.virtual('bookCount').get(function () {
-  return this.savedBooks.length;
+// Number of friends added
+userSchema.virtual('friendCount').get(function () {
+  return this.friends.length;
 });
 
 const User = model('User', userSchema);
