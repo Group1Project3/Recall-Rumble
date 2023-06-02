@@ -7,6 +7,7 @@ import Navbar from './components/Navigationbar';
 import Games from './pages/Game';
 import Profile from './pages/Profile';
 import Leaderboard from './pages/Leaderboard';
+import Home from './pages/Home';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
