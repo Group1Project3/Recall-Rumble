@@ -1,5 +1,6 @@
 import React from 'react';
 import GameLogic from '../components/GameLogic';
+
 import { Layout } from 'antd';
 
 const { Content } = Layout;
