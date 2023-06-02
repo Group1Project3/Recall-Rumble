@@ -10,7 +10,7 @@ const GamePage = () => {
     <Layout>
        <Row justify="center" align="middle" style={{ height: '100px', background: '#000', color: '#fff' }}>
         <Col>
-          <Title level={1} style={{ color: '#fff' }}>Recall Rumble</Title>
+          <Title level={1} style={{ color: '#fff' }}>Match the cards in as few turns as possible!</Title>
         </Col>
       </Row>
       <Content style={{ padding: '15px' }}>

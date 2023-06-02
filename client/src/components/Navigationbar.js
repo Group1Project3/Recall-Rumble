@@ -37,10 +37,10 @@ const AppNavigationBar = () => {
     <>
       {Auth.loggedIn() && (
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ lineHeight: '64px', justifyContent: 'space-between' }}>
-          <span key="home" style={{ padding: '0 15px', cursor: 'default', marginRight: 'auto' }}>Recall Rumble</span>
+          <span key="home" style={{ fontSize: '20px',padding: '0 15px', cursor: 'default', marginRight: 'auto', color: 'white' }}>Recall Rumble</span>
           <Menu.Item key="dropdown">
             <Dropdown overlay={menu} placement="bottomRight">
-              <UserOutlined />
+              <UserOutlined style={{ fontSize: '20px', color: 'white' }} />
             </Dropdown>
           </Menu.Item>
         </Menu>
@@ -48,7 +48,7 @@ const AppNavigationBar = () => {
 
       {!Auth.loggedIn() && (
         <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px', justifyContent: 'space-between' }}>
-          <span key="home" style={{ padding: '0 15px', cursor: 'default', marginRight: 'auto'  }}>Recall Rumble</span>
+          <span key="home" style={{ fontSize: '20px',padding: '0 15px', cursor: 'default', marginRight: 'auto', color: 'white' }}>Recall Rumble</span>
           <Menu.Item key="login-signup" onClick={() => setShowModal(true)}>
             Login/Sign Up
           </Menu.Item>
