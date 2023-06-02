@@ -1,7 +1,7 @@
 // basic setup for resolvers
 // need to be modified to accommodate new content (remove book content)
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Score } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -13,6 +13,22 @@ const resolvers = {
         return data; // Return the user data
       }
       throw new AuthenticationError('You need to be logged in!'); // Throw an error if not logged in
+    },
+    checkHighScore: async (parent, score, context) => {
+      const oldScore = await Score.findOne({player: context.user._id, highScore: true})
+      if(score < oldScore) {
+        return true
+      } else {
+        return false
+      }
+    },
+    checkGlobalHigh: async (parent, score) => {
+      const oldScore = await Score.findOne({globalHigh: true})
+      if(score < oldScore) {
+        return true
+      } else {
+        return false
+      }
     },
   },
 
@@ -40,6 +56,34 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    saveScore: async (parent, {score, high, global}, context) => {
+      const newScore = await Score.create({
+        value: score,
+        highScore: high,
+        globalHigh: global,
+        player: context.user._id
+      })
+      const lastGame = await User.findOneAndUpdate({_id: context.user._id},
+        { lastScore: score}
+        )
+      return { newScore }
+    },
+    updateOldHigh: async (parent, { high }, context) => {
+      const updatedHS = await Score.findOneAndUpdate(
+        { player: context.user._id, highScore: true },
+        { highScore: false },
+        { new: true }
+      )
+      return updatedHS
+    },
+    updateGlobalHigh: async (parent, { global }, context) => {
+      const updatedGlobal = await Score.findOneAndUpdate(
+        { globalHigh: true },
+        { globalHigh: false },
+        { new: true }
+      )
+      return updatedGlobal
     },
   },
 };

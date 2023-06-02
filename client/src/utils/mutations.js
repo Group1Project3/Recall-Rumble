@@ -33,6 +33,38 @@ export const ADD_USER = gql`
   }
 `;
 
+export const SAVE_SCORE = gql`
+  mutation saveScore($value: Int!, $highScore: Boolean!, $globalHigh: Boolean!, $player: ID!) {
+    saveScore(value: $value, highScore: $highScore, globalHigh: $globalHigh, player: $player){
+      value
+      highScore
+      globalHigh
+      player
+    }
+  }
+`;
+
+export const UPDATE_HIGH = gql`
+  mutation updateOldHigh($highScore: Boolean!) {
+    updateOldHigh(highScore: $highScore) {
+      value
+      highScore
+      globalHigh
+      player
+    }
+  }
+`;
+
+export const UPDATE_GLOBAL = gql`
+  mutation updateOldGlobal($globalHigh: Boolean!) {
+    updateOldGlobal(globalHigh: $globalHigh) {
+      value
+      highScore
+      globalHigh
+      player
+    }
+  }
+`;
 
 // template code for reference
 // import { gql } from '@apollo/client';

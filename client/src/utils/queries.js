@@ -18,3 +18,25 @@ export const GET_ME = gql`
     }
   }
 `;
+
+export const CHECK_HS = gql`
+  {
+    checkHighScore {
+      value
+      highScore
+      globalHigh
+      player
+    }
+  }
+`;
+
+export const CHECK_GLOBAL = gql`
+  {
+    checkGlobalHigh {
+      value
+      highScore
+      globalHigh
+      player
+    }
+  }
+`;

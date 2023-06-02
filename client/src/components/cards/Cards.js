@@ -17,8 +17,6 @@ const Cards = ({
   const [currCards, setCurrCards] = useState([]);
   const [disableClick, setDisableClick] = useState(false);
   const [count, setCount] = useState(1);
-  const { data } = useQuery(GET_ME);
-  const userData = data?.me || {};
 
   useEffect(() => {
     // declare number of cards based on level
@@ -101,15 +99,16 @@ const Cards = ({
         // runs if all cards found
         if (shownCards.length === images.length - 1) {
           // store number of moves, pass game object to updateNewGame function
-          // updateNumOfMoves(count);
-          // setTimeout(() => {
-          //   updateNewGame({
-          //     gameLevel: currentLevel,
-          //     numOfMoves: count,
-          //     date: Date.now(),
-          //   });
-          //   updateActive();
-          // }, 1000);
+          updateNumOfMoves(count);         
+          setTimeout(() => {
+            // SaveScore to db
+            updateNewGame({
+              value: count,
+              highScore: CheckHighScore(count),
+              globalHigh: CheckGlobalHigh(count),
+            });
+            updateActive();
+          }, 1000);
         }
         // runs if second card does not match firs card
       } else {
@@ -132,6 +131,14 @@ const Cards = ({
   const noClicking = () => {
     console.log('nope!');
   };
+
+const CheckHighScore = (score) => {
+
+}
+
+const CheckGlobalHigh = (score) => {
+
+}
 
   return (
     <Row gutter={[16, 16]} style={{ margin: '16px' }}>
