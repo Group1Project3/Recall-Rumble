@@ -4,6 +4,7 @@ import { ApolloClient, ApolloProvider, createHttpLink, InMemoryCache } from '@ap
 import { setContext } from '@apollo/client/link/context';
 
 import Navbar from './components/Navigationbar';
+import Intro from './pages/Intro';
 import Games from './pages/Game';
 import Profile from './pages/Profile';
 import Leaderboard from './pages/Leaderboard';
@@ -35,7 +36,7 @@ function App() {
         <>
           <Navbar />
           <Routes>
-            <Route path='/' element={<Games />} />
+            <Route path='/' element={<Intro />} />
             <Route path='/Game' element={<PrivateRoutes><Games /></PrivateRoutes>} />
             <Route path='/Profile' element={<PrivateRoutes><Profile /></PrivateRoutes>} />
             <Route path='/Leaderboard' element={<PrivateRoutes><Leaderboard /></PrivateRoutes>} />
