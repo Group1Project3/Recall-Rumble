@@ -36,24 +36,20 @@ const AppNavigationBar = () => {
   return (
     <>
       {Auth.loggedIn() && (
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ lineHeight: '64px' }}>
-          <Menu.Item key="home" as={Link} to="/">
-            Recall Rumble
-          </Menu.Item>
-          <Dropdown overlay={menu} placement="bottomRight">
-            <Menu.Item key="dropdown" style={{ float: 'right' }}>
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ lineHeight: '64px', justifyContent: 'space-between' }}>
+          <span key="home" style={{ padding: '0 15px', cursor: 'default', marginRight: 'auto' }}>Recall Rumble</span>
+          <Menu.Item key="dropdown">
+            <Dropdown overlay={menu} placement="bottomRight">
               <UserOutlined />
-            </Menu.Item>
-          </Dropdown>
+            </Dropdown>
+          </Menu.Item>
         </Menu>
       )}
 
       {!Auth.loggedIn() && (
-        <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>
-          <Menu.Item key="home" as={Link} to="/">
-            Recall Rumble
-          </Menu.Item>
-          <Menu.Item key="login-signup" style={{ float: 'right' }} onClick={() => setShowModal(true)}>
+        <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px', justifyContent: 'space-between' }}>
+          <span key="home" style={{ padding: '0 15px', cursor: 'default', marginRight: 'auto'  }}>Recall Rumble</span>
+          <Menu.Item key="login-signup" onClick={() => setShowModal(true)}>
             Login/Sign Up
           </Menu.Item>
         </Menu>
@@ -72,6 +68,5 @@ const AppNavigationBar = () => {
     </>
   );
 };
-
 
 export default AppNavigationBar;
