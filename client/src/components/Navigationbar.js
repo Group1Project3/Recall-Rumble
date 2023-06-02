@@ -39,7 +39,7 @@ const AppNavigationBar = () => {
           <span key="home" style={{ fontSize: '20px', padding: '0 15px', cursor: 'default', marginRight: 'auto', color: 'white' }}>Recall Rumble</span>
           <Menu.Item key="dropdown">
             <Dropdown overlay={menu} placement="bottomRight">
-              <span style={{ fontSize: '20px', color: 'white',paddingRight: '5px' }}>Menu</span>
+              <span style={{ fontSize: '20px', color: 'white', paddingRight: '5px' }}>Menu</span>
             </Dropdown>
           </Menu.Item>
         </Menu>
@@ -48,7 +48,7 @@ const AppNavigationBar = () => {
       {!Auth.loggedIn() && (
         <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px', justifyContent: 'space-between' }}>
           <span key="home" style={{ fontSize: '20px', padding: '0 15px', cursor: 'default', marginRight: 'auto', color: 'white' }}>Recall Rumble</span>
-          <Menu.Item key="login-signup" onClick={() => setShowModal(true)}>
+          <Menu.Item key="login-signup" onClick={() => setShowModal(true)} style={{ color: 'white' }}>
             Login/Sign Up
           </Menu.Item>
         </Menu>
