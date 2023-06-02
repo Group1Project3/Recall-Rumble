@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Dropdown, Modal, Tabs } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
@@ -37,10 +36,10 @@ const AppNavigationBar = () => {
     <>
       {Auth.loggedIn() && (
         <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ lineHeight: '64px', justifyContent: 'space-between' }}>
-          <span key="home" style={{ fontSize: '20px',padding: '0 15px', cursor: 'default', marginRight: 'auto', color: 'white' }}>Recall Rumble</span>
+          <span key="home" style={{ fontSize: '20px', padding: '0 15px', cursor: 'default', marginRight: 'auto', color: 'white' }}>Recall Rumble</span>
           <Menu.Item key="dropdown">
             <Dropdown overlay={menu} placement="bottomRight">
-              <UserOutlined style={{ fontSize: '20px', color: 'white' }} />
+              <span style={{ fontSize: '20px', color: 'white',paddingRight: '5px' }}>Menu</span>
             </Dropdown>
           </Menu.Item>
         </Menu>
@@ -48,7 +47,7 @@ const AppNavigationBar = () => {
 
       {!Auth.loggedIn() && (
         <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px', justifyContent: 'space-between' }}>
-          <span key="home" style={{ fontSize: '20px',padding: '0 15px', cursor: 'default', marginRight: 'auto', color: 'white' }}>Recall Rumble</span>
+          <span key="home" style={{ fontSize: '20px', padding: '0 15px', cursor: 'default', marginRight: 'auto', color: 'white' }}>Recall Rumble</span>
           <Menu.Item key="login-signup" onClick={() => setShowModal(true)}>
             Login/Sign Up
           </Menu.Item>
