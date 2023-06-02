@@ -129,7 +129,7 @@ const Cards = ({
   return (
     <Row gutter={[16, 16]} style={{ margin: '16px' }}>
       {images.map((image, index) => (
-        <Col key={index} xs={12} sm={8} md={8} lg={6} xl={6} xxl={6}>
+        <Col key={index} xs={12} sm={8} md={8} lg={8} xl={6} xxl={4}>
           <CardItem
             id={index}
             imageId={image.id}
