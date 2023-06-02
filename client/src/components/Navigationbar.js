@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import { Menu, Dropdown, Modal, Tabs } from 'antd';
-import { UserOutlined } from '@ant-design/icons';
 import SignUpForm from './SignupForm';
 import LoginForm from './LoginForm';
 
@@ -36,24 +35,20 @@ const AppNavigationBar = () => {
   return (
     <>
       {Auth.loggedIn() && (
-        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ lineHeight: '64px' }}>
-          <Menu.Item key="home" as={Link} to="/">
-            Recall Rumble
+        <Menu theme="dark" mode="horizontal" defaultSelectedKeys={['home']} style={{ lineHeight: '64px', justifyContent: 'space-between' }}>
+          <span key="home" style={{ fontSize: '20px', padding: '0 15px', cursor: 'default', marginRight: 'auto', color: 'white' }}>Recall Rumble</span>
+          <Menu.Item key="dropdown">
+            <Dropdown overlay={menu} placement="bottomRight">
+              <span style={{ fontSize: '20px', color: 'white', paddingRight: '5px' }}>Menu</span>
+            </Dropdown>
           </Menu.Item>
-          <Dropdown overlay={menu} placement="bottomRight">
-            <Menu.Item key="dropdown" style={{ float: 'right' }}>
-              <UserOutlined />
-            </Menu.Item>
-          </Dropdown>
         </Menu>
       )}
 
       {!Auth.loggedIn() && (
-        <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px' }}>
-          <Menu.Item key="home" as={Link} to="/">
-            Recall Rumble
-          </Menu.Item>
-          <Menu.Item key="login-signup" style={{ float: 'right' }} onClick={() => setShowModal(true)}>
+        <Menu theme="dark" mode="horizontal" style={{ lineHeight: '64px', justifyContent: 'space-between' }}>
+          <span key="home" style={{ fontSize: '20px', padding: '0 15px', cursor: 'default', marginRight: 'auto', color: 'white' }}>Recall Rumble</span>
+          <Menu.Item key="login-signup" onClick={() => setShowModal(true)} style={{ color: 'white' }}>
             Login/Sign Up
           </Menu.Item>
         </Menu>
@@ -72,6 +67,5 @@ const AppNavigationBar = () => {
     </>
   );
 };
-
 
 export default AppNavigationBar;

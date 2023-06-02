@@ -26,6 +26,9 @@ const CardItem = ({ id, imageId, shownCards, cardClicked, source }) => {
       // show card img and disable click if necessary
       style={{
         backgroundColor: show ? '#D3D3D3' : null,
+        width: '100%',
+        border: '1px solid #000',
+        borderRadius: '5px',
         pointerEvents: show ? 'none' : 'auto',
       }}
       onClick={onClick}
@@ -37,7 +40,11 @@ const CardItem = ({ id, imageId, shownCards, cardClicked, source }) => {
         // get image from robohash
         src={`https://robohash.org/${imageId}` + source}
         // hide image if necesarry
-        style={{ visibility: !show ? 'hidden' : 'visible' }}
+        style={{ 
+          visibility: !show ? 'hidden' : 'visible',
+          width: '100%', 
+          height: 'auto'
+        }}
       ></img>
     </div>
   );
