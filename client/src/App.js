@@ -7,6 +7,7 @@ import Navbar from './components/Navigationbar';
 import Games from './pages/Game';
 import Profile from './pages/Profile';
 import Leaderboard from './pages/Leaderboard';
+import PrivateRoutes from './components/PrivateRoutes';
 
 const httpLink = createHttpLink({
   uri: '/graphql',
@@ -35,9 +36,9 @@ function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={<Games />} />
-            <Route path='/Game' element={<Games />} />
-            <Route path='/Profile' element={<Profile />} />
-            <Route path='/Leaderboard' element={<Leaderboard />} />
+            <Route path='/Game' element={<PrivateRoutes><Games /></PrivateRoutes>} />
+            <Route path='/Profile' element={<PrivateRoutes><Profile /></PrivateRoutes>} />
+            <Route path='/Leaderboard' element={<PrivateRoutes><Leaderboard /></PrivateRoutes>} />
             <Route path='*' element={<h1 className='display-2'>Wrong page!</h1>} />
           </Routes>
         </>
