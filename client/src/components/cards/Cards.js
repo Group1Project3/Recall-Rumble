@@ -1,5 +1,6 @@
 import React, { useState, useEffect } from 'react';
 import CardItem from './CardItem';
+import { Row, Col } from 'antd';
 
 // declare props and initial state
 const Cards = ({
@@ -93,15 +94,15 @@ const Cards = ({
         // runs if all cards found
         if (shownCards.length === images.length - 1) {
           // store number of moves, pass game object to updateNewGame function
-          updateNumOfMoves(count);
-          setTimeout(() => {
-            updateNewGame({
-              gameLevel: currentLevel,
-              numOfMoves: count,
-              date: Date.now(),
-            });
-            updateActive();
-          }, 1000);
+          // updateNumOfMoves(count);
+          // setTimeout(() => {
+          //   updateNewGame({
+          //     gameLevel: currentLevel,
+          //     numOfMoves: count,
+          //     date: Date.now(),
+          //   });
+          //   updateActive();
+          // }, 1000);
         }
         // runs if second card does not match firs card
       } else {
@@ -109,13 +110,13 @@ const Cards = ({
         setDisableClick(true);
         setShownCards((shownCards) => [...shownCards, curId]);
         setCurrCards([]);
-        // after 2 seconds, flip last two cards back over and enable clicking
+        // after half a second, flip last two cards back over and enable clicking
         setTimeout(() => {
           let shownCardsTempArr = [...shownCards];
           shownCardsTempArr.splice(-1, 1);
           setShownCards(shownCardsTempArr);
           setDisableClick(false);
-        }, 2000);
+        }, 500);
       }
     }
   };
@@ -126,30 +127,19 @@ const Cards = ({
   };
 
   return (
-    // materializeCSS card
-    <div
-      className='mem-cards-container'
-      // set width for number of cards
-      style={{
-        maxWidth:
-          currentLevel === 'beginner'
-            ? '500px'
-            : currentLevel === 'intermediate'
-            ? '600px'
-            : '700px',
-      }}
-    >
+    <Row gutter={[16, 16]} style={{ margin: '16px' }}>
       {images.map((image, index) => (
-        <CardItem
-          key={index}
-          id={index}
-          imageId={image.id}
-          shownCards={shownCards}
-          cardClicked={disableClick ? noClicking : cardClicked}
-          source={source}
-        />
+        <Col key={index} xs={12} sm={8} md={8} lg={6} xl={6} xxl={6}>
+          <CardItem
+            id={index}
+            imageId={image.id}
+            shownCards={shownCards}
+            cardClicked={disableClick ? noClicking : cardClicked}
+            source={source}
+          />
+        </Col>
       ))}
-    </div>
+    </Row>
   );
 };
 
