@@ -61,12 +61,15 @@ const Cards = ({
   // declare source based on user's chosen theme for robohash api
   let source;
   switch (currentTheme) {
+    // easy
     case 'robots':
       source = '?set=set1';
       break;
+      // hard
     case 'cats':
       source = '?set=set4';
       break;
+      // medium
     case 'monsters':
       source = '?set=set2';
       break;
