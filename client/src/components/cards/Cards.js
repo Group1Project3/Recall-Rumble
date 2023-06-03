@@ -3,7 +3,6 @@ import CardItem from './CardItem';
 import { useQuery, useMutation } from '@apollo/client';
 import { CHECK_HS, CHECK_GLOBAL, GET_ME} from '../../utils/queries';
 import { SAVE_SCORE, UPDATE_HIGH, UPDATE_GLOBAL } from '../../utils/mutations';
-import { GET_ME } from '../../utils/queries';
 import { Row, Col } from 'antd';
 
 // declare props and initial state
