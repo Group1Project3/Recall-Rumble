@@ -16,10 +16,10 @@ const typeDefs = gql`
         user: User
     }
     type Score {
-        value: Int
+        value: Int!
         highScore: Boolean!
         globalHigh: Boolean!
-        player: User!
+        player: ID!
     }
     type Query {
         me: User
@@ -30,8 +30,8 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         saveScore(value: Int!, highScore: Boolean!, globalHigh: Boolean!, player: ID!): Score
-        updateOldHigh(highScore: Boolean!): Score
-        updateOldGlobal(globalHigh: Boolean!): Score
+        updateOldHigh(highScore: Boolean!, player: ID!): Score
+        updateGlobalHigh(globalHigh: Boolean!): Score
     }
 `;
 

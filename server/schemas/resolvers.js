@@ -9,26 +9,15 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         // Retrieve user data if logged in
-        data = await User.findOne({ _id: context.user._id }).select('-__v -password');
-        return data; // Return the user data
+        return User.findOne({ _id: context.user._id }).select('-__v -password');
       }
       throw new AuthenticationError('You need to be logged in!'); // Throw an error if not logged in
     },
-    checkHighScore: async (parent, score, context) => {
-      const oldScore = await Score.findOne({player: context.user._id, highScore: true})
-      if(score < oldScore) {
-        return true
-      } else {
-        return false
-      }
+    checkHighScore: async (parent, args, context) => {
+      return Score.findOne({player: context.user._id, highScore: true})
     },
-    checkGlobalHigh: async (parent, score) => {
-      const oldScore = await Score.findOne({globalHigh: true})
-      if(score < oldScore) {
-        return true
-      } else {
-        return false
-      }
+    checkGlobalHigh: async (parent, args) => {
+      return Score.findOne({globalHigh: true})
     },
   },
 
@@ -57,17 +46,14 @@ const resolvers = {
 
       return { token, user };
     },
-    saveScore: async (parent, {score, high, global}, context) => {
+    saveScore: async (parent, {score, high, global, id}, context) => {
       const newScore = await Score.create({
-        value: score,
-        highScore: high,
-        globalHigh: global,
-        player: context.user._id
+        score,
+        high,
+        global,
+        id
       })
-      const lastGame = await User.findOneAndUpdate({_id: context.user._id},
-        { lastScore: score}
-        )
-      return { newScore }
+      return newScore
     },
     updateOldHigh: async (parent, { high }, context) => {
       const updatedHS = await Score.findOneAndUpdate(

@@ -1,6 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CardItem from './CardItem';
-import { useQuery } from '@apollo/client';
+import { useQuery, useMutation } from '@apollo/client';
+import { CHECK_HS, CHECK_GLOBAL, GET_ME} from '../../utils/queries';
+import { SAVE_SCORE, UPDATE_HIGH, UPDATE_GLOBAL } from '../../utils/mutations';
 import { GET_ME } from '../../utils/queries';
 import { Row, Col } from 'antd';
 
@@ -17,6 +19,22 @@ const Cards = ({
   const [currCards, setCurrCards] = useState([]);
   const [disableClick, setDisableClick] = useState(false);
   const [count, setCount] = useState(1);
+  const [saveScore, { err }] = useMutation(SAVE_SCORE);
+  const [updateOldHigh, { error2 }] = useMutation(UPDATE_HIGH);
+  const [updateOldGlobal, { error3 }] = useMutation(UPDATE_GLOBAL);
+
+  const checkHS = useQuery(CHECK_HS);
+  const checkGlobal = useQuery(CHECK_GLOBAL);
+  const getMe = useQuery(GET_ME);
+
+  const hsData = checkHS.data?.checkHighScore;
+  const globalData = checkGlobal.data?.checkGlobalHigh;
+  const userData = getMe.data?.me || {};
+  const [newScoreData, setNewScoreData] = useState({ value: 99, highScore: false, globalHigh: false, player: '647949b102e487370076cc44'})
+
+  console.log(userData)
+  console.log(hsData)
+  console.log(globalData)
 
   useEffect(() => {
     // declare number of cards based on level
@@ -80,7 +98,7 @@ const Cards = ({
   }
 
   // handle cards clicked
-  const cardClicked = (cardDiv) => {
+  const cardClicked = async (cardDiv) => {
     // delcare imgId and div id
     curImgId = parseInt(cardDiv.getAttribute('imgid'));
     curId = parseInt(cardDiv.id);
@@ -98,17 +116,11 @@ const Cards = ({
         setCurrCards([]);
         // runs if all cards found
         if (shownCards.length === images.length - 1) {
-          // store number of moves, pass game object to updateNewGame function
-          updateNumOfMoves(count);         
-          setTimeout(() => {
-            // SaveScore to db
-            updateNewGame({
-              value: count,
-              highScore: CheckHighScore(count),
-              globalHigh: CheckGlobalHigh(count),
-            });
-            updateActive();
-          }, 1000);
+          // Save score to db
+          console.log('game done')
+          console.log(count)
+          // Check if high score or global high
+          handleScoreSave(count, CheckHighScore(count), CheckGlobalHigh(count))
         }
         // runs if second card does not match firs card
       } else {
@@ -132,13 +144,44 @@ const Cards = ({
     console.log('nope!');
   };
 
-const CheckHighScore = (score) => {
+  const handleScoreSave = async (score, high, global) => {
+    // setNewScoreData({ value: score, highScore: high, globalHigh: global, player: userData._id })
+    console.log(newScoreData)
+    try { 
+      await saveScore({
+        variables: { ...newScoreData }
+      });
+      console.log('score saved')
+    } catch (err) {
+      console.error(JSON.stringify(err))
+    }
+  }
 
-}
+  const CheckHighScore = (score) => {
+    let newScoreHigh = true
+    
+    if ( hsData != null && globalData != null) {
+      if (score < hsData.value) {
+        newScoreHigh = true
+      } else {
+        newScoreHigh = false
+      }
+    }
+    return newScoreHigh
+  }
 
-const CheckGlobalHigh = (score) => {
+  const CheckGlobalHigh = (score) => {
+    let newScoreGlobal = true
 
-}
+    if ( hsData != null && globalData != null) {
+      if (score < globalData.value) {
+          newScoreGlobal = true
+        } else {
+          newScoreGlobal = false
+        }
+      }
+    return newScoreGlobal
+  }
 
   return (
     <Row gutter={[16, 16]} style={{ margin: '16px' }}>
