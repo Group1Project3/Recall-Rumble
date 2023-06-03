@@ -22,7 +22,7 @@ const Intro = () => {
             {Auth.loggedIn() ? "Press the button below to play!" : "Click the button below to login or to make an account!"}
           </Title>
           {Auth.loggedIn() ? (
-            <Link to="/game">
+            <Link to="/Game">
               <Button type="primary" style={{ justifyContent: 'center', marginTop: '1rem' }}>
                 Recall Rumble Time!
               </Button>
@@ -34,7 +34,7 @@ const Intro = () => {
           )}
         </Col>
       </Row>
-      <Modal centered visible={showModal} onCancel={() => setShowModal(false)} footer={null}>
+      <Modal centered open={showModal} onCancel={() => setShowModal(false)} footer={null}>
         <Tabs defaultActiveKey="login" centered>
           <TabPane tab="Login" key="login">
             <LoginForm handleModalClose={() => setShowModal(false)} />
