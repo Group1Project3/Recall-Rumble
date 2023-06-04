@@ -24,7 +24,7 @@ const AppNavigationBar = () => {
 
   // Define the dropdown menu to be used with Ant Design's Dropdown
   const menu = (
-    <Menu onClick={handleMenuClick} mode="horizontal">
+    <Menu onClick={handleMenuClick} mode="vertical">
       <Menu.Item key="game">
         <Link to="/Game">Game</Link>
       </Menu.Item>
