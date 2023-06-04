@@ -61,7 +61,7 @@ const resolvers = {
         { new: true }
       )
     },
-    updateOldGlobal: async (parent, { player }, context) => {
+    updateOldGlobal: async (parent, { globalHigh }, context) => {
       return await Score.findOneAndUpdate(
         { globalHigh: true },
         { globalHigh: false },
@@ -72,6 +72,13 @@ const resolvers = {
       return await User.findOneAndUpdate(
         { _id:  _id},
         { highScore: highScore },
+        { new: true }
+      )
+    },
+    lastScore: async (parent, {_id, lastScore }, context) => {
+      return await User.findOneAndUpdate(
+        { _id: _id },
+        { lastScore: lastScore},
         { new: true }
       )
     },

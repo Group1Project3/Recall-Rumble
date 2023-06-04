@@ -147,7 +147,14 @@ const Cards = ({
             globalHigh: globalHigh,
             player: player
          }
-      });
+      }).then
+      // Updates user models last score
+      await lastScore({
+        variables: {
+          _id: userData._id,
+          lastScore: value
+        }
+      })
     } catch (err) {
       console.error(err)
     }
@@ -164,7 +171,14 @@ const Cards = ({
             variables: { 
                 player: userData._id,
              }
-          });
+          }).then
+          // Updates player highscore on the User model
+          await updatePlayerHigh({
+            variables: {
+              _id: userData._id,
+              highScore: score
+            }
+          })
           return  true
         } catch (err) {
           console.error(err)
@@ -173,7 +187,18 @@ const Cards = ({
         return false
       }
     } else {
-      return true
+      // Updates player highscore on the User model
+      try { 
+      await updatePlayerHigh({
+        variables: {
+          _id: userData._id,
+          highScore: score
+        }
+      })
+      return  true
+    } catch (err) {
+      console.error(JSON.stringify(err))
+    }
     }
   }
 
@@ -186,7 +211,7 @@ const Cards = ({
         try { 
           await updateOldGlobal({
             variables: { 
-                player: userData._id,
+                globalHigh: true,
              }
           });
           return  true
