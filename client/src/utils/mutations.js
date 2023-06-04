@@ -44,9 +44,9 @@ export const SAVE_SCORE = gql`
   }
 `;
 
-export const UPDATE_HIGH = gql`
-  mutation updateOldHigh($highScore: Boolean!) {
-    updateOldHigh(highScore: $highScore) {
+export const UPDATE_OLD_HIGH = gql`
+  mutation updateOldHigh($player: ID!) {
+    updateOldHigh(player: $player) {
       value
       highScore
       globalHigh
@@ -55,7 +55,7 @@ export const UPDATE_HIGH = gql`
   }
 `;
 
-export const UPDATE_GLOBAL = gql`
+export const UPDATE_OLD_GLOBAL = gql`
   mutation updateOldGlobal($globalHigh: Boolean!) {
     updateOldGlobal(globalHigh: $globalHigh) {
       value

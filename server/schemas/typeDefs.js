@@ -30,8 +30,10 @@ const typeDefs = gql`
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
         saveScore(value: Int!, highScore: Boolean!, globalHigh: Boolean!, player: ID!): Score
-        updateOldHigh(highScore: Boolean!, player: ID!): Score
-        updateGlobalHigh(globalHigh: Boolean!): Score
+        updateOldHigh(player: ID!): Score
+        updateOldGlobal(globalHigh: Boolean!): Score
+        updatePlayerHigh(_id: ID!, highScore: Int!): User
+        lastScore(_id: ID!, lastScore: Int!): User
     }
 `;
 
