@@ -5,7 +5,7 @@ import Cards from '../components/cards/Cards';
 const { Content } = Layout;
 const { Title } = Typography;
 
-const GamePage = () => {
+const GamePage = (props) => {
   return (
     <Layout>
       <Row justify="center" align="middle" style={{ height: '100px', background: '#000', color: '#fff' }}>
@@ -14,7 +14,7 @@ const GamePage = () => {
         </Col>
       </Row>
       <Content style={{ padding: '15px' }}>
-        <Cards />
+        <Cards currentTheme={"monsters"} currentLevel={window.location.pathname.split("/").at(-1)}/>
       </Content>
     </Layout>
   );

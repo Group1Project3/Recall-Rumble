@@ -37,7 +37,7 @@ function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={<Intro />} />
-            <Route path='/Game' element={<PrivateRoutes><Games /></PrivateRoutes>} />
+            <Route path='/Game/:id' element={<PrivateRoutes><Games  /></PrivateRoutes>} />
             <Route path='/Profile' element={<PrivateRoutes><Profile /></PrivateRoutes>} />
             <Route path='/Leaderboard' element={<PrivateRoutes><Leaderboard /></PrivateRoutes>} />
             <Route path='*' element={<Link to="/" style={{ textDecoration: 'none' }}>

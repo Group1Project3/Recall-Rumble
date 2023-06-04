@@ -1,6 +1,6 @@
-import React, { useState, useEffect } from 'react';
-import CardItem from './CardItem';
-import { Row, Col } from 'antd';
+import React, { useState, useEffect } from "react";
+import CardItem from "./CardItem";
+import { Row, Col } from "antd";
 
 // declare props and initial state
 const Cards = ({
@@ -16,20 +16,25 @@ const Cards = ({
   const [disableClick, setDisableClick] = useState(false);
   const [count, setCount] = useState(1);
 
+  let source;
   useEffect(() => {
     // declare number of cards based on level
     let number;
     switch (currentLevel) {
-      case 'beginner':
+      case "beginner":
         number = 12;
+        source = "?set=set1";
         break;
-      case 'intermediate':
+      case "intermediate":
         number = 20;
+        source = "?set=set2";
         break;
-      case 'expert':
+      case "expert":
         number = 30;
+        source = "?set=set4";
         break;
       default:
+        source = "?set=set1";
         number = 12;
     }
 
@@ -52,35 +57,34 @@ const Cards = ({
     // save random int array to state
     setImages(buffer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [source]);
 
   // declare variables
   let curId = 0;
   let curImgId = 0;
 
   // declare source based on user's chosen theme for robohash api
-  let source;
-  switch (currentTheme) {
-    // easy
-    case 'robots':
-      source = '?set=set1';
-      break;
-      // hard
-    case 'cats':
-      source = '?set=set4';
-      break;
-      // medium
-    case 'monsters':
-      source = '?set=set2';
-      break;
-    default:
-      source = '?set=set1';
-  }
+  // switch (currentTheme) {
+  //   // easy
+  //   case 'robots':
+  //     source = '?set=set1';
+  //     break;
+  //     // hard
+  //   case 'cats':
+  //     source = '?set=set4';
+  //     break;
+  //     // medium
+  //   case 'monsters':
+  //     source = '?set=set2';
+  //     break;
+  //   default:
+  //     source = '?set=set1';
+  // }
 
   // handle cards clicked
   const cardClicked = (cardDiv) => {
     // delcare imgId and div id
-    curImgId = parseInt(cardDiv.getAttribute('imgid'));
+    curImgId = parseInt(cardDiv.getAttribute("imgid"));
     curId = parseInt(cardDiv.id);
     // if card is first clicked in pair, store values
     if (currCards.length === 0) {
@@ -126,11 +130,11 @@ const Cards = ({
 
   // log message if shown card clicked
   const noClicking = () => {
-    console.log('nope!');
+    console.log("nope!");
   };
 
   return (
-    <Row gutter={[16, 16]} style={{ margin: '16px' }}>
+    <Row gutter={[16, 16]} style={{ margin: "16px" }}>
       {images.map((image, index) => (
         <Col key={index} xs={12} sm={8} md={8} lg={8} xl={6} xxl={4}>
           <CardItem
