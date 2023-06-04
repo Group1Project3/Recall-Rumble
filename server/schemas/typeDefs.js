@@ -17,16 +17,21 @@ const typeDefs = gql`
     }
     type Score {
         value: Int
-        highScore: Boolean!
-        globalHigh: Boolean!
-        player: User!
+        highScore: Boolean
+        globalHigh: Boolean
+        player: ID
     }
     type Query {
         me: User
+        checkHighScore: Score
+        checkGlobalHigh: Score
     }
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
+        saveScore(value: Int!, highScore: Boolean!, globalHigh: Boolean!, player: ID!): Score
+        updateOldHigh(highScore: Boolean!, player: ID!): Score
+        updateGlobalHigh(globalHigh: Boolean!): Score
     }
 `;
 

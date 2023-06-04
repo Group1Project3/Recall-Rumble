@@ -1,7 +1,7 @@
 // basic setup for resolvers
 // need to be modified to accommodate new content (remove book content)
 const { AuthenticationError } = require('apollo-server-express');
-const { User } = require('../models');
+const { User, Score } = require('../models');
 const { signToken } = require('../utils/auth');
 
 const resolvers = {
@@ -9,10 +9,15 @@ const resolvers = {
     me: async (parent, args, context) => {
       if (context.user) {
         // Retrieve user data if logged in
-        data = await User.findOne({ _id: context.user._id }).select('-__v -password');
-        return data; // Return the user data
+        return User.findOne({ _id: context.user._id }).select('-__v -password');
       }
       throw new AuthenticationError('You need to be logged in!'); // Throw an error if not logged in
+    },
+    checkHighScore: async (parent, args, context) => {
+      return Score.findOne({player: context.user._id, highScore: true})
+    },
+    checkGlobalHigh: async (parent, args) => {
+      return Score.findOne({globalHigh: true})
     },
   },
 
@@ -40,6 +45,30 @@ const resolvers = {
       const token = signToken(user);
 
       return { token, user };
+    },
+    saveScore: async (parent, {value, highScore, globalHigh, player}, context) => {
+      return await Score.create({
+        value,
+        highScore,
+        globalHigh,
+        player
+      })
+    },
+    updateOldHigh: async (parent, { high }, context) => {
+      const updatedHS = await Score.findOneAndUpdate(
+        { player: context.user._id, highScore: true },
+        { highScore: false },
+        { new: true }
+      )
+      return updatedHS
+    },
+    updateGlobalHigh: async (parent, { global }, context) => {
+      const updatedGlobal = await Score.findOneAndUpdate(
+        { globalHigh: true },
+        { globalHigh: false },
+        { new: true }
+      )
+      return updatedGlobal
     },
   },
 };

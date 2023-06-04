@@ -1,6 +1,9 @@
 import React from 'react';
 import { Typography, Layout, Row, Col } from 'antd';
 import Cards from '../components/cards/Cards';
+import GameLogic from '../components/GameLogic';
+import Card from '../components/cards/Cards';
+import CardItem from '../components/cards/CardItem'
 
 const { Content } = Layout;
 const { Title } = Typography;
