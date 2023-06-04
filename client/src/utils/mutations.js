@@ -66,6 +66,25 @@ export const UPDATE_OLD_GLOBAL = gql`
   }
 `;
 
+export const UPDATE_PLAYER_HIGH = gql`
+  mutation updatePlayerHigh($_id: ID!, highScore: Int!) {
+    updateOldGlobal(_id: $_id, highScore: $highScore) {
+      _id
+      highScore
+      lastScore
+    }
+  }
+`;
+
+export const LAST_SCORE = gql`
+  mutation lastScore($_id: ID!, lastScore: Int!) {
+    lastScore(_id: $_id, lastScore: $lastScore) {
+      _id
+      lastScore
+    }
+  }
+`;
+
 // template code for reference
 // import { gql } from '@apollo/client';
 

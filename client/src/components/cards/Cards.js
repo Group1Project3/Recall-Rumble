@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import CardItem from './CardItem';
 import { useQuery, useMutation } from '@apollo/client';
 import { CHECK_HS, CHECK_GLOBAL, GET_ME} from '../../utils/queries';
-import { SAVE_SCORE, UPDATE_OLD_HIGH, UPDATE_OLD_GLOBAL } from '../../utils/mutations';
+import { SAVE_SCORE, UPDATE_OLD_HIGH, UPDATE_OLD_GLOBAL, UPDATE_PLAYER_HIGH, LAST_SCORE } from '../../utils/mutations';
 import { Row, Col } from 'antd';
 
 // declare props and initial state
@@ -21,6 +21,8 @@ const Cards = ({
   const [saveScore, { error }] = useMutation(SAVE_SCORE);
   const [updateOldHigh, { error2 }] = useMutation(UPDATE_OLD_HIGH);
   const [updateOldGlobal, { error3 }] = useMutation(UPDATE_OLD_GLOBAL);
+  const [updatePlayerHigh, {error4}] = useMutation(UPDATE_PLAYER_HIGH);
+  const [lastScore, {error5}] = useMutation(LAST_SCORE);
 
   const checkHS = useQuery(CHECK_HS);
   const checkGlobal = useQuery(CHECK_GLOBAL);
