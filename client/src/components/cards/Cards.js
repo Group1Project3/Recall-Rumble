@@ -147,7 +147,7 @@ const Cards = ({
          }
       });
     } catch (err) {
-      console.error(JSON.stringify(err))
+      console.error(err)
     }
   }
 
@@ -165,7 +165,7 @@ const Cards = ({
           });
           return  true
         } catch (err) {
-          console.error(JSON.stringify(err))
+          console.error(err)
         }
       } else {
         return false
@@ -179,7 +179,7 @@ const Cards = ({
   const CheckGlobalHigh = async (score) => {
     // Check for data
     if ( hsData !== null && globalData !== null) {
-      // If score is new high, change the old highscore to highScore: false
+      // If score is new global high, change the old global high to globalHigh: false
       if (score < globalData.value) {
         try { 
           await updateOldGlobal({
@@ -189,7 +189,7 @@ const Cards = ({
           });
           return  true
         } catch (err) {
-          console.error(JSON.stringify(err))
+          console.error(err)
         }
       } else {
         return false

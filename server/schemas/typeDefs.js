@@ -31,7 +31,7 @@ const typeDefs = gql`
         addUser(username: String!, email: String!, password: String!): Auth
         saveScore(value: Int!, highScore: Boolean!, globalHigh: Boolean!, player: ID!): Score
         updateOldHigh(player: ID!): Score
-        updateOldGlobal(globalHigh: Boolean!): Score
+        updateOldGlobal(player: ID!): Score
         updatePlayerHigh(_id: ID!, highScore: Int!): User
         lastScore(_id: ID!, lastScore: Int!): User
     }

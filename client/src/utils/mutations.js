@@ -56,8 +56,8 @@ export const UPDATE_OLD_HIGH = gql`
 `;
 
 export const UPDATE_OLD_GLOBAL = gql`
-  mutation updateOldGlobal($globalHigh: Boolean!) {
-    updateOldGlobal(globalHigh: $globalHigh) {
+  mutation updateOldGlobal($player: ID!) {
+    updateOldGlobal(player: $player) {
       value
       highScore
       globalHigh
