@@ -18,7 +18,7 @@ const Cards = ({
   const [currCards, setCurrCards] = useState([]);
   const [disableClick, setDisableClick] = useState(false);
   const [count, setCount] = useState(1);
-  const [saveScore, { err }] = useMutation(SAVE_SCORE);
+  const [saveScore, { error }] = useMutation(SAVE_SCORE);
   const [updateOldHigh, { error2 }] = useMutation(UPDATE_HIGH);
   const [updateOldGlobal, { error3 }] = useMutation(UPDATE_GLOBAL);
 
@@ -29,7 +29,6 @@ const Cards = ({
   const hsData = checkHS.data?.checkHighScore;
   const globalData = checkGlobal.data?.checkGlobalHigh;
   const userData = getMe.data?.me || {};
-  const [newScoreData, setNewScoreData] = useState({ value: 99, highScore: false, globalHigh: false, player: '647949b102e487370076cc44'})
 
   console.log(userData)
   console.log(hsData)
@@ -116,10 +115,7 @@ const Cards = ({
         // runs if all cards found
         if (shownCards.length === images.length - 1) {
           // Save score to db
-          console.log('game done')
-          console.log(count)
-          // Check if high score or global high
-          handleScoreSave(count, CheckHighScore(count), CheckGlobalHigh(count))
+          handleScoreSave(count, CheckHighScore(count), CheckGlobalHigh(count), userData._id) 
         }
         // runs if second card does not match firs card
       } else {
@@ -143,12 +139,15 @@ const Cards = ({
     console.log('nope!');
   };
 
-  const handleScoreSave = async (score, high, global) => {
-    // setNewScoreData({ value: score, highScore: high, globalHigh: global, player: userData._id })
-    console.log(newScoreData)
+  const handleScoreSave = async (value, highScore, globalHigh, player) => {
     try { 
       await saveScore({
-        variables: { ...newScoreData }
+        variables: { 
+            value: value,
+            highScore: highScore,
+            globalHigh: globalHigh,
+            player: player
+         }
       });
       console.log('score saved')
     } catch (err) {

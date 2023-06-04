@@ -2,7 +2,6 @@ import React from 'react';
 import { Typography, Layout, Row, Col } from 'antd';
 import Cards from '../components/cards/Cards';
 import GameLogic from '../components/GameLogic';
-import { Layout } from 'antd';
 import Card from '../components/cards/Cards';
 import CardItem from '../components/cards/CardItem'
 

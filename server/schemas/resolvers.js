@@ -46,14 +46,13 @@ const resolvers = {
 
       return { token, user };
     },
-    saveScore: async (parent, {score, high, global, id}, context) => {
-      const newScore = await Score.create({
-        score,
-        high,
-        global,
-        id
+    saveScore: async (parent, {value, highScore, globalHigh, player}, context) => {
+      return await Score.create({
+        value,
+        highScore,
+        globalHigh,
+        player
       })
-      return newScore
     },
     updateOldHigh: async (parent, { high }, context) => {
       const updatedHS = await Score.findOneAndUpdate(

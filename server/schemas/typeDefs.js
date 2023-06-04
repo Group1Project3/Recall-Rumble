@@ -16,10 +16,10 @@ const typeDefs = gql`
         user: User
     }
     type Score {
-        value: Int!
-        highScore: Boolean!
-        globalHigh: Boolean!
-        player: ID!
+        value: Int
+        highScore: Boolean
+        globalHigh: Boolean
+        player: ID
     }
     type Query {
         me: User
