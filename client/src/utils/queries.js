@@ -23,19 +23,21 @@ export const CHECK_HS = gql`
     checkHighScore {
       value
       highScore
-      globalHigh
-      player
+      player {
+        _id
+      }
     }
   }
 `;
 
-export const CHECK_GLOBAL = gql`
+export const LEADERBOARD = gql`
   {
-    checkGlobalHigh {
+    leaderboard {
       value
-      highScore
-      globalHigh
-      player
+      player {
+        _id
+        username
+      }
     }
   }
 `;
