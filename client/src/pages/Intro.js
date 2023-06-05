@@ -23,12 +23,12 @@ const Intro = () => {
           </Title>
           {Auth.loggedIn() ? (
             <Link to="/Game">
-              <Button type="primary" style={{ justifyContent: 'center', marginTop: '1rem' }}>
+              <Button size="large" type="primary" style={{ justifyContent: 'center', marginTop: '1rem' }}>
                 Recall Rumble Time!
               </Button>
             </Link>
           ) : (
-            <Button type="primary" onClick={() => setShowModal(true)} style={{ justifyContent: 'center', marginTop: '1rem' }}>
+            <Button size="large" type="primary" onClick={() => setShowModal(true)} style={{ justifyContent: 'center', marginTop: '1rem' }}>
               Login / Sign Up
             </Button>
           )}
