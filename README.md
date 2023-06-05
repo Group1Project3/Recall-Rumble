@@ -2,11 +2,11 @@
  <br />
  <div align="center">
  <h1 align="center">Recall Rumble</h1>
-    <a href="https://github.com/utgroup3/Nomad-Nebula">
-     <img src="./public/img/transparentwhite.png" alt="Logo" height="200">
+    <a href="https://github.com/Group1Project3/Recall-Rumble">
+     <img src="./client/src/assets/images/logo.png" alt="Logo" height="200">
    </a>
     <p align="center">
-      Connect with the Cosmos
+      Get ready to Rumble
     </p>
   
 <br />
@@ -32,4 +32,4 @@
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="description"></a>
-## :rocket: About The Project
+## About The Project
