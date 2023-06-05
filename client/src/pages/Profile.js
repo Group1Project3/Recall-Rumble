@@ -1,7 +1,8 @@
 import React from 'react';
-import { Typography, Row, Col } from 'antd';
-import { useQuery } from '@apollo/client';
+import { Typography, Row, Col, Button } from 'antd';
+import { useQuery, useMutation } from '@apollo/client';
 import { GET_ME } from '../utils/queries';
+import { DELETE_SCORES } from '../utils/mutations';
 
 const { Title } = Typography;
 
@@ -9,8 +10,23 @@ const Profile = () => {
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.me || {};
 
+  const [deleteScores, {error}] = useMutation(DELETE_SCORES)
+
   if (loading) {
     return <h2>LOADING...</h2>;
+  }
+
+  const DeleteScoreHandler = async () => {
+    try {
+      await deleteScores({
+        variables: {
+          player: userData._id
+        }
+      })
+      window.location.reload(true)
+    } catch (err) {
+      console.error(JSON.stringify(err))
+    }
   }
 
   return (
@@ -26,6 +42,7 @@ const Profile = () => {
           <Title level={2}>Email: {userData.email}</Title>
           <Title level={2}>High Score: {userData.highScore}</Title>
           <Title level={2}>Last Score: {userData.lastScore}</Title>
+          <Button type='primary' danger onClick={DeleteScoreHandler}>Delete Scores</Button>
         </Col>
       </Row>
     </>

@@ -75,3 +75,11 @@ export const LAST_SCORE = gql`
     }
   }
 `;
+
+export const DELETE_SCORES = gql`
+  mutation deleteScores($player: ID!) {
+    deleteScores(player: $player) {
+      _id
+    }
+  }
+`;

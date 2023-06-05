@@ -32,6 +32,7 @@ const typeDefs = gql`
         updateOldHigh(player: ID!): Score
         updatePlayerHigh(_id: ID!, highScore: Int!): User
         lastScore(_id: ID!, lastScore: Int!): User
+        deleteScores(player: ID!): User
     }
 `;
 

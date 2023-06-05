@@ -74,6 +74,15 @@ const resolvers = {
         { new: true }
       )
     },
+    deleteScores: async (parent, { player }, context) => {
+      await Score.deleteMany({player: player})
+
+      return await User.findOneAndUpdate(
+        {_id: player},
+        { highScore: 99, lastScore: 99},
+        { new: true }
+      )
+    }
   },
 };
 
