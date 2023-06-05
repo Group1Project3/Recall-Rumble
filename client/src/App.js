@@ -36,7 +36,6 @@ function App() {
           <Navbar />
           <Routes>
             <Route path='/' element={<Games />} />
-            <Route path='/Home' element={<Home />} />
             <Route path='/Game' element={<Games />} />
             <Route path='/Profile' element={<Profile />} />
             <Route path='/Leaderboard' element={<Leaderboard />} />
