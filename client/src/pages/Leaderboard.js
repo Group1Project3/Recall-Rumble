@@ -9,12 +9,12 @@ const Leaderboard = () => {
   const meQuery = useQuery(GET_ME);
   const leaderboardQuery = useQuery(LEADERBOARD)
   const userData = meQuery.data?.me || {};
+  // Data contains top 10 high scores
   const leaderboardData = leaderboardQuery?.data || [];
   if (meQuery.loading) {
     return <h2>LOADING...</h2>;
   }
   
-  console.log(leaderboardQuery)
   return (
     <>
       <Row justify="center" align="middle" style={{ height: '100px', background: '#000', color: '#fff' }}>
