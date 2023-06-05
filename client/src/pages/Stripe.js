@@ -44,9 +44,9 @@ const Stripe = () => {
             </Row>
             <Row justify="center" style={{ marginTop: '20px' }}>
                 <Col>
-                    <Title level={2} style={{ textAlign: 'center' }}>Want to support the team? Donate below :)</Title>
+                    <Title level={2} style={{ textAlign: 'center' }}>Want to support the team? Donate below 😀</Title>
                     <Input type="number" style={{ textAlign: 'center' }} placeholder="Enter your donation amount (USD)" onChange={(e) => setDonationAmount(e.target.value)} />
-                    <Button onClick={handleClick} style={{ display: 'block', margin: '0 auto', marginTop: '10px' }}>
+                    <Button size="large" onClick={handleClick} style={{ display: 'block', margin: '0 auto', marginTop: '10px' }}>
                         Donate with Stripe
                     </Button>
                 </Col>
