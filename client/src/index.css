@@ -134,23 +134,49 @@ h6 {
     letter-spacing: -0.5em;
     opacity: 0;
   }
+
   40% {
     opacity: 0.6;
   }
+
   100% {
     opacity: 1;
   }
 }
+
 @keyframes tracking-in-expand {
   0% {
     letter-spacing: -0.5em;
     opacity: 0;
   }
+
   40% {
     opacity: 0.6;
   }
+
   100% {
     opacity: 1;
   }
 }
- 
+
+.bg {
+  -webkit-animation: color-change-2x 6s linear infinite alternate both;
+  animation: color-change-2x 6s linear infinite alternate both;
+}
+
+@-webkit-keyframes color-change-2x {
+  0% {
+    background: #000000;
+  }
+  100% {
+    background: #001529;
+  }
+}
+@keyframes color-change-2x {
+  0% {
+    background: #000000;
+  }
+  100% {
+    background: #001529;
+  }
+}

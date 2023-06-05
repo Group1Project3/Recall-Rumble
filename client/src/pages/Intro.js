@@ -13,7 +13,7 @@ const Intro = () => {
 
   return (
     <>
-      <Row justify="center" align="middle" style={{ height: '100vh', background: '#000', color: '#fff', textAlign: 'center' }}>
+      <Row justify="center" className='bg' align="middle" style={{ height: '100vh', color: '#fff', textAlign: 'center' }}>
         <Col>
           <Title level={1} className='pageheader' style={{ color: '#fff', textAlign: 'center', width: '80vw' }}>
             {Auth.loggedIn() ? "Now that you have an account," : "Hey there, welcome to Recall Rumble!"}
