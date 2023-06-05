@@ -16,9 +16,6 @@ const resolvers = {
     checkHighScore: async (parent, args, context) => {
       return Score.findOne({player: context.user._id, highScore: true})
     },
-    checkGlobalHigh: async (parent, args) => {
-      return Score.findOne({globalHigh: true})
-    },
     leaderboard: async (parent, args) => {
       return Score.find({}).sort({value: 1}).limit(10).populate({path: "player", model: "User"})
     }
@@ -49,11 +46,10 @@ const resolvers = {
 
       return { token, user };
     },
-    saveScore: async (parent, {value, highScore, globalHigh, player}, context) => {
+    saveScore: async (parent, {value, highScore, player}, context) => {
       return await Score.create({
         value,
         highScore,
-        globalHigh,
         player
       })
     },
@@ -61,13 +57,6 @@ const resolvers = {
       return await Score.findOneAndUpdate(
         { player: player, highScore: true },
         { highScore: false },
-        { new: true }
-      )
-    },
-    updateOldGlobal: async (parent, { globalHigh }, context) => {
-      return await Score.findOneAndUpdate(
-        { globalHigh: true },
-        { globalHigh: false },
         { new: true }
       )
     },

@@ -23,20 +23,6 @@ export const CHECK_HS = gql`
     checkHighScore {
       value
       highScore
-      globalHigh
-      player {
-        _id
-      }
-    }
-  }
-`;
-
-export const CHECK_GLOBAL = gql`
-  {
-    checkGlobalHigh {
-      value
-      highScore
-      globalHigh
       player {
         _id
       }

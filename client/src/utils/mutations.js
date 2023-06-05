@@ -34,11 +34,10 @@ export const ADD_USER = gql`
 `;
 
 export const SAVE_SCORE = gql`
-  mutation saveScore($value: Int!, $highScore: Boolean!, $globalHigh: Boolean!, $player: ID!) {
-    saveScore(value: $value, highScore: $highScore, globalHigh: $globalHigh, player: $player){
+  mutation saveScore($value: Int!, $highScore: Boolean!, $player: ID!) {
+    saveScore(value: $value, highScore: $highScore, player: $player){
       value
       highScore
-      globalHigh
       player {
         _id
       }
@@ -51,20 +50,6 @@ export const UPDATE_OLD_HIGH = gql`
     updateOldHigh(player: $player) {
       value
       highScore
-      globalHigh
-      player {
-        _id
-      }
-    }
-  }
-`;
-
-export const UPDATE_OLD_GLOBAL = gql`
-  mutation updateOldGlobal($globalHigh: Boolean!) {
-    updateOldGlobal(globalHigh: $globalHigh) {
-      value
-      highScore
-      globalHigh
       player {
         _id
       }

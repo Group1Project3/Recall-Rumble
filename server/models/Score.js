@@ -11,11 +11,6 @@ const scoreSchema = new Schema(
         required: true,
         default: false
     },
-    globalHigh: {
-        type: Boolean,
-        required: true,
-        default: false,
-    },
     player: {
         type: Schema.Types.ObjectId,
         ref: "User"
