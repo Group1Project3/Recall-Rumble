@@ -11,8 +11,11 @@ const Profile = () => {
   const userData = data?.me || {};
   let highscore = ""
   let lastscore = ""
+  
+  // eslint-disable-next-line no-unused-vars
   const [deleteScores, {error}] = useMutation(DELETE_SCORES)
 
+  // If no scores recorded, display N/A
   if(userData.highScore === 99) {
     highscore = "N/A"
     lastscore = "N/A"
