@@ -1,29 +1,23 @@
 import React from 'react';
-import { Jumbotron, Container } from 'react-bootstrap';
-import { useQuery } from '@apollo/client';
-import { GET_ME } from '../utils/queries';
+import { Typography, Layout, Row, Col } from 'antd';
+import Cards from '../components/cards/Cards';
 
-const Games = () => {
-  const { loading, data } = useQuery(GET_ME);
-  const userData = data?.me || {};
+const { Content } = Layout;
+const { Title } = Typography;
 
-  if (loading) {
-    return <h2>LOADING...</h2>;
-  }
-
+const GamePage = () => {
   return (
-    <>
-      <Jumbotron fluid className='text-light bg-dark'>
-        <Container>
-          <h1>Game Page</h1>
-        </Container>
-      </Jumbotron>
-      <Container>
-        <h2>Game page</h2>
-        {/* Add your game components and logic here */}
-      </Container>
-    </>
+    <Layout>
+      <Row justify="center" align="middle" style={{ height: '100px', background: '#001529', color: '#fff' }}>
+        <Col>
+          <Title level={1} className='pageheader' style={{ color: '#fff', textAlign: 'center' }}>Match the cards in as few turns as possible!</Title>
+        </Col>
+      </Row>
+      <Content style={{ padding: '15px' }}>
+        <Cards />
+      </Content>
+    </Layout>
   );
 };
 
-export default Games;
+export default GamePage;
