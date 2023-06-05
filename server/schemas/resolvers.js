@@ -16,9 +16,9 @@ const resolvers = {
     checkHighScore: async (parent, args, context) => {
       return Score.findOne({player: context.user._id, highScore: true})
     },
-    checkGlobalHigh: async (parent, args) => {
-      return Score.findOne({globalHigh: true})
-    },
+    leaderboard: async (parent, args) => {
+      return Score.find({}).sort({value: 1}).limit(10).populate({path: "player", model: "User"})
+    }
   },
 
   Mutation: {
@@ -46,30 +46,43 @@ const resolvers = {
 
       return { token, user };
     },
-    saveScore: async (parent, {value, highScore, globalHigh, player}, context) => {
+    saveScore: async (parent, {value, highScore, player}, context) => {
       return await Score.create({
         value,
         highScore,
-        globalHigh,
         player
       })
     },
-    updateOldHigh: async (parent, { high }, context) => {
-      const updatedHS = await Score.findOneAndUpdate(
-        { player: context.user._id, highScore: true },
+    updateOldHigh: async (parent, { player }, context) => {
+      return await Score.findOneAndUpdate(
+        { player: player, highScore: true },
         { highScore: false },
         { new: true }
       )
-      return updatedHS
     },
-    updateGlobalHigh: async (parent, { global }, context) => {
-      const updatedGlobal = await Score.findOneAndUpdate(
-        { globalHigh: true },
-        { globalHigh: false },
+    updatePlayerHigh: async (parent, { _id, highScore }, context) => {
+      return await User.findOneAndUpdate(
+        { _id:  _id},
+        { highScore: highScore },
         { new: true }
       )
-      return updatedGlobal
     },
+    lastScore: async (parent, {_id, lastScore }, context) => {
+      return await User.findOneAndUpdate(
+        { _id: _id },
+        { lastScore: lastScore},
+        { new: true }
+      )
+    },
+    deleteScores: async (parent, { player }, context) => {
+      await Score.deleteMany({player: player})
+
+      return await User.findOneAndUpdate(
+        {_id: player},
+        { highScore: 99, lastScore: 99},
+        { new: true }
+      )
+    }
   },
 };
 
