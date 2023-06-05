@@ -34,6 +34,9 @@ const AppNavigationBar = () => {
       <Menu.Item key="/Leaderboard">
         <Link to="/Leaderboard">Leaderboard</Link>
       </Menu.Item>
+      <Menu.Item key="/Donate">
+        <Link to="/Donate">Donate</Link>
+      </Menu.Item>
       <Menu.Item key="logout">Logout</Menu.Item>
     </Menu>
   );
