@@ -71,3 +71,21 @@ Info here
    </p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+## Contributing
+
+### Tasks and Roles 
+[`Domenico Barberi`](https://github.com/DomenicoBarb)
+> 
+---
+[`Mason Lagrange`](https://github.com/masonlagrange)
+> 
+--- 
+[`Parth Mali`](https://github.com/Parth0415)
+> 
+---
+[`Christina Barberi`](https://github.com/Christinaecb)
+> 
+---
+[`Ayad Patel`](https://github.com/AyadPatel)
+> Brainstorming ideas
