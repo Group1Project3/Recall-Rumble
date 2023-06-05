@@ -11,12 +11,12 @@ const Profile = () => {
   const userData = data?.me || {};
   let highscore = ""
   let lastscore = ""
-  
+
   // eslint-disable-next-line no-unused-vars
-  const [deleteScores, {error}] = useMutation(DELETE_SCORES)
+  const [deleteScores, { error }] = useMutation(DELETE_SCORES)
 
   // If no scores recorded, display N/A
-  if(userData.highScore === 99) {
+  if (userData.highScore === 99) {
     highscore = "N/A"
     lastscore = "N/A"
   } else {
@@ -54,7 +54,11 @@ const Profile = () => {
           <Title level={2}>Email: {userData.email}</Title>
           <Title level={2}>High Score: {highscore}</Title>
           <Title level={2}>Last Score: {lastscore}</Title>
-          <Button type='primary' danger onClick={DeleteScoreHandler}>Delete Scores</Button>
+          <div style={{ display: 'flex', justifyContent: 'center' }}>
+            <Button type='primary' danger onClick={DeleteScoreHandler}>
+              Delete Scores
+            </Button>
+          </div>
         </Col>
       </Row>
     </>
