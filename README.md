@@ -50,3 +50,10 @@ Recall Rumble info here
 - 
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="installation"></a>
+
+## Installation
+
+Info here
+
