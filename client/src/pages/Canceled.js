@@ -9,14 +9,14 @@ const CancelledOrderPage = () => {
         <>
             <Row justify="center" align="middle" style={{ height: '100px', background: '#001529', color: '#fff' }}>
                 <Col>
-                    <Title level={1} style={{ color: '#fff', textAlign: 'center' }}>Looks like the order was cancelled</Title>
+                    <Title className='pageheader' level={1} style={{ color: '#fff', textAlign: 'center' }}>Looks like the order was cancelled</Title>
                 </Col>
             </Row>
             <Row justify="center" style={{ marginTop: '25px' }}>
                 <Col style={{ textAlign: 'center' }}>
-                    <Title level={2}>Would you like to retry?</Title>
+                    <Title className='donation' level={2}>Would you like to retry?</Title>
                     <Link to="/Donate">
-                        <Button type="primary" size="large" style={{ justifyContent: 'center', marginTop: '5px' }}>
+                        <Button className='donation' type="primary" size="large" style={{ justifyContent: 'center', marginTop: '5px' }}>
                             Take me back!
                         </Button>
                     </Link>

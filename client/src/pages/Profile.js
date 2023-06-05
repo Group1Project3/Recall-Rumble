@@ -17,10 +17,10 @@ const Profile = () => {
     <>
       <Row justify="center" align="middle" style={{ height: '100px', background: '#001529', color: '#fff' }}>
         <Col>
-          <Title level={1} style={{ color: '#fff', textAlign: 'center' }}>Profile Page</Title>
+          <Title level={1} className='pageheader' style={{ color: '#fff', textAlign: 'center' }}>Profile Page</Title>
         </Col>
       </Row>
-      <Row justify="center" style={{ marginTop: '20px' }}>
+      <Row justify="center" className='profile' style={{ marginTop: '20px' }}>
         <Col>
           <Title level={2}>Username: {userData.username}</Title>
           <Title level={2}>Email: {userData.email}</Title>
