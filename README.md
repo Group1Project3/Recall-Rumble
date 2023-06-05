@@ -33,3 +33,20 @@
 
 <a name="description"></a>
 ## About The Project
+
+![Screenshot](./client/src/assets/images/recall-rumble-home.jpg)
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+Recall Rumble info here
+
+<a name="features"></a>
+
+## Added Features
+- 
+- 
+- 
+- 
+- 
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
