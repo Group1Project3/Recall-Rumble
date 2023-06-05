@@ -43,11 +43,11 @@ Recall Rumble info here
 <a name="features"></a>
 
 ## Added Features
-- 
-- 
-- 
-- 
-- 
+- Sign-up/login and make an account
+- Card style memory game where you match images!
+- Leaderboard to compete with other players
+- User profile with user info, high score and last score
+- Donation page if you feel like making a donation!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -85,7 +85,7 @@ Info here
 > 
 ---
 [`Christina Barberi`](https://github.com/Christinaecb)
-> 
+> Javascript card logic, games model, game visuals with robohash
 ---
 [`Ayad Patel`](https://github.com/AyadPatel)
 > Brainstorming ideas
