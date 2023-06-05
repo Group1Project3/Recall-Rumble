@@ -98,3 +98,23 @@ Info here
 Distributed under the MIT License. See `LICENSE.txt` for more information.
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="questions"></a>
+
+## Questions?
+
+If you have any questions about this project, please don't hesitate to reach out to me. I'm always happy to help and provide additional information! 
+
+[`Domenico Barberi`](domenicoabarberi@gmail.com)
+
+---
+[`Mason Lagrange`](mason.lagrange@gmail.com)
+
+--- 
+[`Parth Mali`](parthmali1597@gmail.com)
+ 
+---
+[`Christina Barberi`](christina.e.c.barberi@gmail.com)
+
+---
+[`Ayad Patel`](ayadpatel93@gmail.com)
