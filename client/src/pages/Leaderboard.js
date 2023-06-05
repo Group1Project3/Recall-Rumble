@@ -8,13 +8,14 @@ const { Title } = Typography;
 const Leaderboard = () => {
   const meQuery = useQuery(GET_ME);
   const leaderboardQuery = useQuery(LEADERBOARD)
+  // eslint-disable-next-line no-unused-vars
   const userData = meQuery.data?.me || {};
-  // Data contains top 10 high scores
-  const leaderboardData = leaderboardQuery?.data || [];
-  if (meQuery.loading) {
+  const leaderboardData = leaderboardQuery.data?.leaderboard || [];
+
+  if (meQuery.loading || leaderboardQuery.loading) {
     return <h2>LOADING...</h2>;
   }
-  
+
   return (
     <>
       <Row justify="center" align="middle" style={{ height: '100px', background: '#001529', color: '#fff' }}>
@@ -26,13 +27,13 @@ const Leaderboard = () => {
         <Col>
           <Title level={2}>Top Players:</Title>
           {leaderboardData.length > 0 ? (
-            <ul>
-              {leaderboardData.map((player, index) => (
-                <li key={player.player}>
+            <ul style={{ listStyleType: 'none', padding: 0, textAlign: 'center' }}>
+              {leaderboardData.map((score, index) => (
+                <li key={score.player._id}>
                   <p>
                     <span>{index + 1}. </span>
-                    <span>{player.player}</span>
-                    <span> - Score: {player.value}</span>
+                    <span>{score.player.username}</span>
+                    <span> - Score: {score.value}</span>
                   </p>
                 </li>
               ))}
