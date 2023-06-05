@@ -19,6 +19,9 @@ const resolvers = {
     checkGlobalHigh: async (parent, args) => {
       return Score.findOne({globalHigh: true})
     },
+    leaderboard: async (parent, args) => {
+      return Score.find({}).sort({value: 1}).limit(10).populate({path: "player", model: "User"})
+    }
   },
 
   Mutation: {

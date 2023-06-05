@@ -24,7 +24,9 @@ export const CHECK_HS = gql`
       value
       highScore
       globalHigh
-      player
+      player {
+        _id
+      }
     }
   }
 `;
@@ -35,7 +37,21 @@ export const CHECK_GLOBAL = gql`
       value
       highScore
       globalHigh
-      player
+      player {
+        _id
+      }
+    }
+  }
+`;
+
+export const LEADERBOARD = gql`
+  {
+    leaderboard {
+      value
+      player {
+        _id
+        username
+      }
     }
   }
 `;

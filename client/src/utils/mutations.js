@@ -39,7 +39,9 @@ export const SAVE_SCORE = gql`
       value
       highScore
       globalHigh
-      player
+      player {
+        _id
+      }
     }
   }
 `;
@@ -50,7 +52,9 @@ export const UPDATE_OLD_HIGH = gql`
       value
       highScore
       globalHigh
-      player
+      player {
+        _id
+      }
     }
   }
 `;
@@ -61,7 +65,9 @@ export const UPDATE_OLD_GLOBAL = gql`
       value
       highScore
       globalHigh
-      player
+      player {
+        _id
+      }
     }
   }
 `;
