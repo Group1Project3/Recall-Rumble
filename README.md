@@ -38,7 +38,7 @@
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
-Recall Rumble info here
+Recall Rumble is an interactive MERN stack single-page application that challenges players and their cognitive abilities. Users can create an account, play a memory match game and add their score to the leaderboard!
 
 <a name="features"></a>
 
@@ -55,7 +55,7 @@ Recall Rumble info here
 
 ## Installation
 
-One of the key advantages of web-based applications is that they can be accessed and used without the need for installation! No installation is require so sit back, relax and enjoy our game!
+One of the key advantages of web-based applications is that they can be accessed and used without the need for installation. No installation is required so sit back, relax and enjoy our game!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
