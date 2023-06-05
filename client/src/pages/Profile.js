@@ -9,8 +9,17 @@ const { Title } = Typography;
 const Profile = () => {
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.me || {};
-
+  let highscore = ""
+  let lastscore = ""
   const [deleteScores, {error}] = useMutation(DELETE_SCORES)
+
+  if(userData.highScore === 99) {
+    highscore = "N/A"
+    lastscore = "N/A"
+  } else {
+    highscore = userData.highScore
+    lastscore = userData.lastScore
+  }
 
   if (loading) {
     return <h2>LOADING...</h2>;
@@ -40,8 +49,8 @@ const Profile = () => {
         <Col>
           <Title level={2}>Username: {userData.username}</Title>
           <Title level={2}>Email: {userData.email}</Title>
-          <Title level={2}>High Score: {userData.highScore}</Title>
-          <Title level={2}>Last Score: {userData.lastScore}</Title>
+          <Title level={2}>High Score: {highscore}</Title>
+          <Title level={2}>Last Score: {lastscore}</Title>
           <Button type='primary' danger onClick={DeleteScoreHandler}>Delete Scores</Button>
         </Col>
       </Row>
