@@ -1,21 +1,20 @@
 import React from 'react';
 import { Typography, Row, Col } from 'antd';
 import { useQuery } from '@apollo/client';
-import { GET_ME } from '../utils/queries';
+import { GET_ME, LEADERBOARD } from '../utils/queries';
 
 const { Title } = Typography;
 
 const Leaderboard = () => {
-  const { loading, data } = useQuery(GET_ME);
-  const userData = data?.me || {};
-
-  if (loading) {
+  const meQuery = useQuery(GET_ME);
+  const leaderboardQuery = useQuery(LEADERBOARD)
+  const userData = meQuery.data?.me || {};
+  // Data contains top 10 high scores
+  const leaderboardData = leaderboardQuery?.data || [];
+  if (meQuery.loading) {
     return <h2>LOADING...</h2>;
   }
-
-  // Assuming the leaderboard data is available in userData.leaderboard
-  const leaderboardData = userData.leaderboard || [];
-
+  
   return (
     <>
       <Row justify="center" align="middle" style={{ height: '100px', background: '#001529', color: '#fff' }}>
@@ -29,11 +28,11 @@ const Leaderboard = () => {
           {leaderboardData.length > 0 ? (
             <ul>
               {leaderboardData.map((player, index) => (
-                <li key={player.id}>
+                <li key={player.player}>
                   <p>
                     <span>{index + 1}. </span>
-                    <span>{player.name}</span>
-                    <span> - Score: {player.score}</span>
+                    <span>{player.player}</span>
+                    <span> - Score: {player.value}</span>
                   </p>
                 </li>
               ))}
