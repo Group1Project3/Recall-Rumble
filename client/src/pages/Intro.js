@@ -18,10 +18,14 @@ const Intro = () => {
         align="middle"
         style={{
           backgroundImage: `url(${logo})`,
+           backgroundPosition: 'center',
+          backgroundSize: 'cover',
           backgroundRepeat: "no-repeat",
           height: "100vh",
-          background: "#000",
-          color: "#fff",
+          marginTop:'0px',
+          
+          //  background: "#000",
+          // color: "#fff",
           textAlign: "center",
         }}
       >
@@ -55,10 +59,11 @@ const Intro = () => {
             <Button
               type="primary"
               onClick={() => setShowModal(true)}
-              style={{ justifyContent: "center", marginTop: "1rem" }}
+              style={{ justifyContent: "center",background:"blue", marginTop: "1rem" }}
             >
               Login / Sign Up
             </Button>
+            
           )}
         </Col>
       </Row>
