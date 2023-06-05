@@ -17,8 +17,8 @@ h6 {
 }
 
 .mem-card {
-  -webkit-animation: slit-in-diagonal-1 0.45s ease-out both;
-  animation: slit-in-diagonal-1 0.45s ease-out both;
+  -webkit-animation: slit-in-diagonal-1 0.6s ease-out both;
+  animation: slit-in-diagonal-1 0.6s ease-out both;
 }
 
 @-webkit-keyframes slit-in-diagonal-1 {
