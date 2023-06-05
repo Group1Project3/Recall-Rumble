@@ -55,7 +55,7 @@ Recall Rumble info here
 
 ## Installation
 
-Info here
+One of the key advantages of web-based applications is that they can be accessed and used without the need for installation! No installation is require so sit back, relax and enjoy our game!
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
