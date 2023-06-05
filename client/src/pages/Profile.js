@@ -17,7 +17,7 @@ const Profile = () => {
     <>
       <Row justify="center" align="middle" style={{ height: '100px', background: '#000', color: '#fff' }}>
         <Col>
-          <Title level={1} style={{ color: '#fff' }}>Profile Page</Title>
+          <Title level={1} style={{ color: '#fff', textAlign: 'center' }}>Profile Page</Title>
         </Col>
       </Row>
       <Row justify="center" style={{ marginTop: '20px' }}>

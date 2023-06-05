@@ -1,5 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CardItem from './CardItem';
+import { useQuery, useMutation } from '@apollo/client';
+import { CHECK_HS, CHECK_GLOBAL, GET_ME} from '../../utils/queries';
+import { SAVE_SCORE, UPDATE_HIGH, UPDATE_GLOBAL } from '../../utils/mutations';
 import { Row, Col } from 'antd';
 
 // declare props and initial state
@@ -15,6 +18,21 @@ const Cards = ({
   const [currCards, setCurrCards] = useState([]);
   const [disableClick, setDisableClick] = useState(false);
   const [count, setCount] = useState(1);
+  const [saveScore, { error }] = useMutation(SAVE_SCORE);
+  const [updateOldHigh, { error2 }] = useMutation(UPDATE_HIGH);
+  const [updateOldGlobal, { error3 }] = useMutation(UPDATE_GLOBAL);
+
+  const checkHS = useQuery(CHECK_HS);
+  const checkGlobal = useQuery(CHECK_GLOBAL);
+  const getMe = useQuery(GET_ME);
+
+  const hsData = checkHS.data?.checkHighScore;
+  const globalData = checkGlobal.data?.checkGlobalHigh;
+  const userData = getMe.data?.me || {};
+
+  console.log(userData)
+  console.log(hsData)
+  console.log(globalData)
 
   useEffect(() => {
     // declare number of cards based on level
@@ -61,12 +79,15 @@ const Cards = ({
   // declare source based on user's chosen theme for robohash api
   let source;
   switch (currentTheme) {
+    // easy
     case 'robots':
       source = '?set=set1';
       break;
+      // hard
     case 'cats':
       source = '?set=set4';
       break;
+      // medium
     case 'monsters':
       source = '?set=set2';
       break;
@@ -75,7 +96,7 @@ const Cards = ({
   }
 
   // handle cards clicked
-  const cardClicked = (cardDiv) => {
+  const cardClicked = async (cardDiv) => {
     // delcare imgId and div id
     curImgId = parseInt(cardDiv.getAttribute('imgid'));
     curId = parseInt(cardDiv.id);
@@ -93,16 +114,8 @@ const Cards = ({
         setCurrCards([]);
         // runs if all cards found
         if (shownCards.length === images.length - 1) {
-          // store number of moves, pass game object to updateNewGame function
-          // updateNumOfMoves(count);
-          // setTimeout(() => {
-          //   updateNewGame({
-          //     gameLevel: currentLevel,
-          //     numOfMoves: count,
-          //     date: Date.now(),
-          //   });
-          //   updateActive();
-          // }, 1000);
+          // Save score to db
+          handleScoreSave(count, CheckHighScore(count), CheckGlobalHigh(count), userData._id) 
         }
         // runs if second card does not match firs card
       } else {
@@ -126,8 +139,50 @@ const Cards = ({
     console.log('nope!');
   };
 
+  const handleScoreSave = async (value, highScore, globalHigh, player) => {
+    try { 
+      await saveScore({
+        variables: { 
+            value: value,
+            highScore: highScore,
+            globalHigh: globalHigh,
+            player: player
+         }
+      });
+      console.log('score saved')
+    } catch (err) {
+      console.error(JSON.stringify(err))
+    }
+  }
+
+  const CheckHighScore = (score) => {
+    let newScoreHigh = true
+    
+    if ( hsData != null && globalData != null) {
+      if (score < hsData.value) {
+        newScoreHigh = true
+      } else {
+        newScoreHigh = false
+      }
+    }
+    return newScoreHigh
+  }
+
+  const CheckGlobalHigh = (score) => {
+    let newScoreGlobal = true
+
+    if ( hsData != null && globalData != null) {
+      if (score < globalData.value) {
+          newScoreGlobal = true
+        } else {
+          newScoreGlobal = false
+        }
+      }
+    return newScoreGlobal
+  }
+
   return (
-    <Row gutter={[16, 16]} style={{ margin: '16px' }}>
+    <Row gutter={[16, 16]} style={{ marginTop: '16px', marginBottom: '16px', marginLeft: '16px', marginRight: '16px' }}>
       {images.map((image, index) => (
         <Col key={index} xs={12} sm={8} md={8} lg={8} xl={6} xxl={4}>
           <CardItem
