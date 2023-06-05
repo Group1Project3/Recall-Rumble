@@ -105,16 +105,17 @@ Distributed under the MIT License. See `LICENSE.txt` for more information.
 
 If you have any questions about this project, please don't hesitate to reach out to me. I'm always happy to help and provide additional information! 
 
-[`Domenico Barberi`](domenicoabarberi@gmail.com)
-
+[`Domenico Barberi`](https://github.com/DomenicoBarb)
+> domenicoabarberi@gmail.com
 ---
-[`Mason Lagrange`](mason.lagrange@gmail.com)
-
+[`Mason Lagrange`](https://github.com/masonlagrange)
+> mason.lagrange@gmail.com
 --- 
-[`Parth Mali`](parthmali1597@gmail.com)
- 
+[`Parth Mali`](https://github.com/Parth0415)
+> parthmali1597@gmail.com
 ---
-[`Christina Barberi`](christina.e.c.barberi@gmail.com)
-
+[`Christina Barberi`](https://github.com/Christinaecb)
+> christina.e.c.barberi@gmail.com
 ---
-[`Ayad Patel`](ayadpatel93@gmail.com)
+[`Ayad Patel`](https://github.com/AyadPatel)
+> ayadpatel93@gmail.com
