@@ -1,8 +1,8 @@
 import React, { useState, useEffect } from 'react';
 import CardItem from './CardItem';
 import { useQuery, useMutation } from '@apollo/client';
-import { CHECK_HS, CHECK_GLOBAL, GET_ME} from '../../utils/queries';
-import { SAVE_SCORE, UPDATE_HIGH, UPDATE_GLOBAL } from '../../utils/mutations';
+import { CHECK_HS, GET_ME} from '../../utils/queries';
+import { SAVE_SCORE, UPDATE_OLD_HIGH, UPDATE_PLAYER_HIGH, LAST_SCORE } from '../../utils/mutations';
 import { Row, Col } from 'antd';
 
 // declare props and initial state
@@ -21,21 +21,17 @@ const Cards = ({
   // eslint-disable-next-line no-unused-vars
   const [saveScore, { error }] = useMutation(SAVE_SCORE);
   // eslint-disable-next-line no-unused-vars
-  const [updateOldHigh, { error2 }] = useMutation(UPDATE_HIGH);
+  const [updateOldHigh, { error2 }] = useMutation(UPDATE_OLD_HIGH);
   // eslint-disable-next-line no-unused-vars
-  const [updateOldGlobal, { error3 }] = useMutation(UPDATE_GLOBAL);
+  const [updatePlayerHigh, {error4}] = useMutation(UPDATE_PLAYER_HIGH);
+  // eslint-disable-next-line no-unused-vars
+  const [lastScore, {error5}] = useMutation(LAST_SCORE);
 
   const checkHS = useQuery(CHECK_HS);
-  const checkGlobal = useQuery(CHECK_GLOBAL);
   const getMe = useQuery(GET_ME);
 
   const hsData = checkHS.data?.checkHighScore;
-  const globalData = checkGlobal.data?.checkGlobalHigh;
   const userData = getMe.data?.me || {};
-
-  console.log(userData)
-  console.log(hsData)
-  console.log(globalData)
 
   useEffect(() => {
     // declare number of cards based on level
@@ -118,7 +114,7 @@ const Cards = ({
         // runs if all cards found
         if (shownCards.length === images.length - 1) {
           // Save score to db
-          handleScoreSave(count, CheckHighScore(count), CheckGlobalHigh(count), userData._id) 
+          handleScoreSave(count, await CheckHighScore(count), userData._id) 
         }
         // runs if second card does not match firs card
       } else {
@@ -142,46 +138,68 @@ const Cards = ({
     console.log('nope!');
   };
 
-  const handleScoreSave = async (value, highScore, globalHigh, player) => {
+  // Handles saving the score to the score collection
+  const handleScoreSave = async (value, highScore, player) => {
     try { 
       await saveScore({
         variables: { 
             value: value,
             highScore: highScore,
-            globalHigh: globalHigh,
             player: player
          }
-      });
-      console.log('score saved')
+      }).then
+      // Updates user models last score
+      await lastScore({
+        variables: {
+          _id: userData._id,
+          lastScore: value
+        }
+      })
+    } catch (err) {
+      console.error(err)
+    }
+  }
+
+  // Checks if current score is highscore
+  const CheckHighScore = async (score) => {
+    // Check for data
+    if ( hsData !== null ) {
+      // If score is new high, change the old highscore to highScore: false
+      if (score < hsData.value) {
+        try { 
+          await updateOldHigh({
+            variables: { 
+                player: userData._id,
+             }
+          }).then
+          // Updates player highscore on the User model
+          await updatePlayerHigh({
+            variables: {
+              _id: userData._id,
+              highScore: score
+            }
+          })
+          return  true
+        } catch (err) {
+          console.error(err)
+        }
+      } else {
+        return false
+      }
+    } else {
+      // Updates player highscore on the User model
+      try { 
+      await updatePlayerHigh({
+        variables: {
+          _id: userData._id,
+          highScore: score
+        }
+      })
+      return  true
     } catch (err) {
       console.error(JSON.stringify(err))
     }
-  }
-
-  const CheckHighScore = (score) => {
-    let newScoreHigh = true
-    
-    if ( hsData != null && globalData != null) {
-      if (score < hsData.value) {
-        newScoreHigh = true
-      } else {
-        newScoreHigh = false
-      }
     }
-    return newScoreHigh
-  }
-
-  const CheckGlobalHigh = (score) => {
-    let newScoreGlobal = true
-
-    if ( hsData != null && globalData != null) {
-      if (score < globalData.value) {
-          newScoreGlobal = true
-        } else {
-          newScoreGlobal = false
-        }
-      }
-    return newScoreGlobal
   }
 
   return (

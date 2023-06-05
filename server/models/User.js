@@ -20,9 +20,13 @@ const userSchema = new Schema(
     },
     highScore: {
       type: Number,
+      required: true,
+      default: 99
     },
     lastScore: {
-      type: Number
+      type: Number,
+      required: true,
+      default: 99
     },
     // Store IDs of friends
     friends: [

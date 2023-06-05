@@ -34,133 +34,52 @@ export const ADD_USER = gql`
 `;
 
 export const SAVE_SCORE = gql`
-  mutation saveScore($value: Int!, $highScore: Boolean!, $globalHigh: Boolean!, $player: ID!) {
-    saveScore(value: $value, highScore: $highScore, globalHigh: $globalHigh, player: $player){
+  mutation saveScore($value: Int!, $highScore: Boolean!, $player: ID!) {
+    saveScore(value: $value, highScore: $highScore, player: $player){
       value
       highScore
-      globalHigh
-      player
+      player {
+        _id
+      }
     }
   }
 `;
 
-export const UPDATE_HIGH = gql`
-  mutation updateOldHigh($highScore: Boolean!) {
-    updateOldHigh(highScore: $highScore) {
+export const UPDATE_OLD_HIGH = gql`
+  mutation updateOldHigh($player: ID!) {
+    updateOldHigh(player: $player) {
       value
       highScore
-      globalHigh
-      player
+      player {
+        _id
+      }
     }
   }
 `;
 
-export const UPDATE_GLOBAL = gql`
-  mutation updateOldGlobal($globalHigh: Boolean!) {
-    updateOldGlobal(globalHigh: $globalHigh) {
-      value
+export const UPDATE_PLAYER_HIGH = gql`
+  mutation updatePlayerHigh($_id: ID!, $highScore: Int!) {
+    updatePlayerHigh(_id: $_id, highScore: $highScore) {
+      _id
       highScore
-      globalHigh
-      player
+      lastScore
     }
   }
 `;
 
-// template code for reference
-// import { gql } from '@apollo/client';
+export const LAST_SCORE = gql`
+  mutation lastScore($_id: ID!, $lastScore: Int!) {
+    lastScore(_id: $_id, lastScore: $lastScore) {
+      _id
+      lastScore
+    }
+  }
+`;
 
-// export const USER_LOGIN = gql`
-//   mutation login($email: String!, $password: String!) {
-//     login(email: $email, password: $password) {
-//       token
-//       user {
-//         _id
-//         username
-//       }
-//     }
-//   }
-// `;
-
-// export const CREATE_USER = gql`
-//   mutation CreateUser($username: String!, $email: String!, $password: String!) {
-//     createUser(username: $username, email: $email, password: $password) {
-//       token
-//       user {
-//         _id
-//         username
-//       }
-//     }
-//   }
-// `;
-
-// export const ADD_COMMENT = gql`
-//   mutation AddComment($gameId: ID!, $comment: String!) {
-//     addComment(gameId: $gameId, comment: $comment) {
-//       _id
-//       name
-//       highscore
-//       comments {
-//         _id
-//         text
-//       }
-//     }
-//   }
-// `;
-
-// export const EDIT_COMMENT = gql`
-//   mutation EditComment($commentId: ID!, $text: String!) {
-//     editComment(commentId: $commentId, text: $text) {
-//       _id
-//       name
-//       highscore
-//       comments {
-//         _id
-//         text
-//       }
-//     }
-//   }
-// `;
-
-// export const DELETE_COMMENT = gql`
-//   mutation DeleteComment($commentId: ID!) {
-//     deleteComment(commentId: $commentId) {
-//       _id
-//       name
-//       highscore
-//       comments {
-//         _id
-//         text
-//       }
-//     }
-//   }
-// `;
-
-// export const SET_SCORE = gql`
-//   mutation SetScore($gameId: ID!, $score: Int!) {
-//     setScore(gameId: $gameId, score: $score) {
-//       _id
-//       name
-//       highscore
-//     }
-//   }
-// `;
-
-// export const UPDATE_SCORE = gql`
-//   mutation UpdateScore($gameId: ID!, $score: Int!) {
-//     updateScore(gameId: $gameId, score: $score) {
-//       _id
-//       name
-//       highscore
-//     }
-//   }
-// `;
-
-// export const DELETE_SCORE = gql`
-//   mutation DeleteScore($gameId: ID!) {
-//     deleteScore(gameId: $gameId) {
-//       _id
-//       name
-//       highscore
-//     }
-//   }
-// `;
+export const DELETE_SCORES = gql`
+  mutation deleteScores($player: ID!) {
+    deleteScores(player: $player) {
+      _id
+    }
+  }
+`;
