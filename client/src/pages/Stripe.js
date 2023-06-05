@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { Typography, Row, Col, Button, Input } from 'antd';
 import { loadStripe } from '@stripe/stripe-js';
+require('dotenv').config();
 
 const stripePromise = loadStripe('pk_test_51NFTHQEEhVSI7lcztkRvr9rszmA4BequNGgJi9b0H9J2cd0q0XxxV2qqWVgBbIJUFKCpOLfhqBlwDOKNsbWIJk0600pI2eOZCW');
 
