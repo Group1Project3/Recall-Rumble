@@ -89,3 +89,12 @@ Info here
 ---
 [`Ayad Patel`](https://github.com/AyadPatel)
 > Brainstorming ideas
+
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
+
+<a name="license"></a>
+
+## License
+Distributed under the MIT License. See `LICENSE.txt` for more information.
+  
+<p align="right">(<a href="#readme-top">back to top</a>)</p>
