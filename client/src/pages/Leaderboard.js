@@ -17,7 +17,7 @@ const Leaderboard = () => {
   
   return (
     <>
-      <Row justify="center" align="middle" style={{ height: '100px', background: '#000', color: '#fff' }}>
+      <Row justify="center" align="middle" style={{ height: '100px', background: '#001529', color: '#fff' }}>
         <Col>
           <Title level={1} style={{ color: '#fff', textAlign: 'center' }}>Leaderboard</Title>
         </Col>

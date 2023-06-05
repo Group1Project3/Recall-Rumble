@@ -18,8 +18,11 @@ const Cards = ({
   const [currCards, setCurrCards] = useState([]);
   const [disableClick, setDisableClick] = useState(false);
   const [count, setCount] = useState(1);
+  // eslint-disable-next-line no-unused-vars
   const [saveScore, { error }] = useMutation(SAVE_SCORE);
+  // eslint-disable-next-line no-unused-vars
   const [updateOldHigh, { error2 }] = useMutation(UPDATE_OLD_HIGH);
+  // eslint-disable-next-line no-unused-vars
   const [updateOldGlobal, { error3 }] = useMutation(UPDATE_OLD_GLOBAL);
   const [updatePlayerHigh, {error4}] = useMutation(UPDATE_PLAYER_HIGH);
   const [lastScore, {error5}] = useMutation(LAST_SCORE);
