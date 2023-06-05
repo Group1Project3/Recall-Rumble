@@ -1,7 +1,10 @@
 import React, { useState, useEffect } from "react";
 import CardItem from "./CardItem";
-import { Row, Col } from "antd";
+import { Row, Col, Statistic } from "antd";
+import { useNavigate } from "react-router-dom";
 
+//change it to 45 sec
+const deadline = Date.now() + 1000 * 45; // Dayjs is also OK
 // declare props and initial state
 const Cards = ({
   updateActive,
@@ -16,26 +19,21 @@ const Cards = ({
   const [disableClick, setDisableClick] = useState(false);
   const [count, setCount] = useState(1);
 
-  let source;
   useEffect(() => {
     // declare number of cards based on level
     let number;
     switch (currentLevel) {
       case "beginner":
-        number = 12;
-        source = "?set=set1";
+        number = 8;
         break;
       case "intermediate":
-        number = 20;
-        source = "?set=set2";
+        number = 12;
         break;
       case "expert":
-        number = 30;
-        source = "?set=set4";
+        number = 16;
         break;
       default:
-        source = "?set=set1";
-        number = 12;
+        number = 8;
     }
 
     // declare array with integers up to 'number', repeated once, and then randomize
@@ -57,29 +55,30 @@ const Cards = ({
     // save random int array to state
     setImages(buffer);
     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [source]);
+  }, []);
 
   // declare variables
   let curId = 0;
   let curImgId = 0;
 
   // declare source based on user's chosen theme for robohash api
-  // switch (currentTheme) {
-  //   // easy
-  //   case 'robots':
-  //     source = '?set=set1';
-  //     break;
-  //     // hard
-  //   case 'cats':
-  //     source = '?set=set4';
-  //     break;
-  //     // medium
-  //   case 'monsters':
-  //     source = '?set=set2';
-  //     break;
-  //   default:
-  //     source = '?set=set1';
-  // }
+  let source;
+  switch (currentLevel) {
+    // easy
+    case "beginner":
+      source = "?set=set1";
+      break;
+    // hard
+    case "expert":
+      source = "?set=set4";
+      break;
+    // medium
+    case "intermediate":
+      source = "?set=set2";
+      break;
+    default:
+      source = "?set=set1";
+  }
 
   // handle cards clicked
   const cardClicked = (cardDiv) => {
@@ -110,6 +109,12 @@ const Cards = ({
           //   });
           //   updateActive();
           // }, 1000);
+
+          //This is the final score
+          const score = ((deadline - Date.now()) / 1000).toPrecision(2);
+
+          //create a query to store the score into the database through which leaderboard will be populated
+          navigate("/Leaderboard");
         }
         // runs if second card does not match firs card
       } else {
@@ -133,20 +138,38 @@ const Cards = ({
     console.log("nope!");
   };
 
+  const navigate = useNavigate();
+  const onFinish = () => {
+    navigate("/Leaderboard");
+  };
+
   return (
-    <Row gutter={[16, 16]} style={{ margin: "16px" }}>
-      {images.map((image, index) => (
-        <Col key={index} xs={12} sm={8} md={8} lg={8} xl={6} xxl={4}>
-          <CardItem
-            id={index}
-            imageId={image.id}
-            shownCards={shownCards}
-            cardClicked={disableClick ? noClicking : cardClicked}
-            source={source}
-          />
-        </Col>
-      ))}
-    </Row>
+    <>
+      <Statistic.Countdown
+        title="Time Left"
+        style={{
+          textAlign: "end",
+          marginBottom: "20px",
+          marginRight: "20px",
+          fontSize: "20px",
+        }}
+        value={deadline}
+        onFinish={onFinish}
+      />
+      <Row gutter={[16, 16]} style={{ margin: "16px" }}>
+        {images.map((image, index) => (
+          <Col key={index} xs={12} sm={8} md={8} lg={8} xl={6} xxl={4}>
+            <CardItem
+              id={index}
+              imageId={image.id}
+              shownCards={shownCards}
+              cardClicked={disableClick ? noClicking : cardClicked}
+              source={source}
+            />
+          </Col>
+        ))}
+      </Row>
+    </>
   );
 };
 
