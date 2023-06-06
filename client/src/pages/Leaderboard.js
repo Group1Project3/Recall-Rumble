@@ -55,7 +55,6 @@ const Leaderboard = () => {
           ) : (
             <p>No data available</p>
           )}
-
         </Col>
       </Row>
     </>
