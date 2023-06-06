@@ -67,7 +67,7 @@ One of the key advantages of web-based applications is that they can be accessed
 ![readme2](./client/src/assets/images/recall-rumble-game.jpg)
    <br />
    <p align="center"> The deployed site can be found on
-   <a href="placeholder">Heroku</a>
+   <a href="https://recallrumble.herokuapp.com/">Heroku</a>
    </p>
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
