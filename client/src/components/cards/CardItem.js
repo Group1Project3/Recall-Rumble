@@ -27,7 +27,7 @@ const CardItem = ({ id, imageId, shownCards, cardClicked, source }) => {
       style={{
         backgroundColor: show ? '#D3D3D3' : null,
         width: '100%',
-        border: '1px solid #000',
+        border: '2px solid #000',
         borderRadius: '5px',
         pointerEvents: show ? 'none' : 'auto',
       }}

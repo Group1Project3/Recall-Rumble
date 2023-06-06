@@ -20,9 +20,13 @@ const userSchema = new Schema(
     },
     highScore: {
       type: Number,
+      required: true,
+      default: 99
     },
     lastScore: {
-      type: Number
+      type: Number,
+      required: true,
+      default: 99
     },
     // Store IDs of friends
     friends: [
@@ -54,11 +58,6 @@ userSchema.pre('save', async function (next) {
 userSchema.methods.isCorrectPassword = async function (password) {
   return bcrypt.compare(password, this.password);
 };
-
-// Number of friends added
-userSchema.virtual('friendCount').get(function () {
-  return this.friends.length;
-});
 
 const User = model('User', userSchema);
 

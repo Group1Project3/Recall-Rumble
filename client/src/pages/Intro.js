@@ -13,54 +13,22 @@ const Intro = () => {
 
   return (
     <>
-      <Row
-        justify="center"
-        align="middle"
-        style={{
-          // backgroundImage: `url(${logo})`,
-          //  backgroundPosition: 'center',
-          // backgroundSize: 'cover',
-          // backgroundRepeat: "no-repeat",
-          height: "100vh",
-          // marginTop:'0px',
-          
-           background: "#000",
-          color: "#fff",
-          textAlign: "center",
-        }}
-      >
+      <Row justify="center" className='bg' align="middle" style={{ height: '100vh', color: '#fff', textAlign: 'center' }}>
         <Col>
-          <Title
-            level={1}
-            style={{ color: "#fff", textAlign: "center", width: "80vw" }}
-          >
-            {Auth.loggedIn()
-              ? "Now that you have an account,"
-              : "Hey there, welcome to Recall Rumble!"}
+          <Title level={1} className='pageheader' style={{ color: '#fff', textAlign: 'center', width: '80vw' }}>
+            {Auth.loggedIn() ? "Now that you have an account," : "Hey there, welcome to Recall Rumble!"}
           </Title>
-          <Title
-            level={1}
-            style={{ color: "#fff", textAlign: "center", width: "80vw" }}
-          >
-            {Auth.loggedIn()
-              ? "Press the button below to play!"
-              : "Click the button below to login or to make an account!"}
+          <Title level={1} className='pageheader' style={{ color: '#fff', textAlign: 'center', width: '80vw' }}>
+            {Auth.loggedIn() ? "Press the button below to play!" : "Click the button below to login or to make an account!"}
           </Title>
           {Auth.loggedIn() ? (
             <Link to="/Game">
-              <Button
-                type="primary"
-                style={{ justifyContent: "center",background:"blue", marginTop: "1rem" }}
-              >
+              <Button className='pageheader' size="large" type="primary" style={{ justifyContent: 'center', marginTop: '1rem' }}>
                 Recall Rumble Time!
               </Button>
             </Link>
           ) : (
-            <Button
-              type="primary"
-              onClick={() => setShowModal(true)}
-              style={{ justifyContent: "center",background:"blue", marginTop: "1rem" }}
-            >
+            <Button className='pageheader' size="large" type="primary" onClick={() => setShowModal(true)} style={{ justifyContent: 'center', marginTop: '1rem' }}>
               Login / Sign Up
             </Button>
             

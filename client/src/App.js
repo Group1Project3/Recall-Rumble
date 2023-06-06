@@ -8,6 +8,8 @@ import Intro from './pages/Intro';
 import Games from './pages/Game';
 import Profile from './pages/Profile';
 import Leaderboard from './pages/Leaderboard';
+import Stripe from './pages/Stripe';
+import Canceled from './pages/Canceled';
 import PrivateRoutes from './components/PrivateRoutes';
 
 const httpLink = createHttpLink({
@@ -43,6 +45,8 @@ function App() {
             /> 
             <Route path='/Profile' element={<PrivateRoutes><Profile /></PrivateRoutes>} />
             <Route path='/Leaderboard' element={<PrivateRoutes><Leaderboard /></PrivateRoutes>} />
+            <Route path='/Donate' element={<PrivateRoutes><Stripe /></PrivateRoutes>} />
+            <Route path='/Canceled' element={<PrivateRoutes><Canceled /></PrivateRoutes>} />
             <Route path='*' element={<Link to="/" style={{ textDecoration: 'none' }}>
               <div style={{
                 textAlign: 'center',
