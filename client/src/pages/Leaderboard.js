@@ -25,16 +25,16 @@ const Leaderboard = () => {
       </Row>
       <Row justify="center" className='leaderboard' style={{ marginTop: '20px' }}>
         <Col>
-          <Title level={2}>Top Players:</Title>
+          <Title style={{ textAlign: 'center' }}level={2}>Top Players:</Title>
           {leaderboardData.length > 0 ? (
             <ul style={{ listStyleType: 'none', padding: 0, textAlign: 'center' }}>
               {leaderboardData.map((score, index) => (
                 <li key={score.player._id}>
-                  <p>
+                  <Title level={4}>
                     <span>{index + 1}. </span>
                     <span>{score.player.username}</span>
                     <span> - Score: {score.value}</span>
-                  </p>
+                  </Title>
                 </li>
               ))}
             </ul>
