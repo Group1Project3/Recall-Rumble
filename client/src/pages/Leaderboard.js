@@ -7,7 +7,7 @@ const { Title } = Typography;
 
 const Leaderboard = () => {
   const meQuery = useQuery(GET_ME);
-  const leaderboardQuery = useQuery(LEADERBOARD)
+  const leaderboardQuery = useQuery(LEADERBOARD);
   // eslint-disable-next-line no-unused-vars
   const userData = meQuery.data?.me || {};
   const leaderboardData = leaderboardQuery.data?.leaderboard || [];
@@ -30,12 +30,10 @@ const Leaderboard = () => {
             <ul style={{ listStyleType: 'none', padding: 0, textAlign: 'center' }}>
               {leaderboardData
                 .reduce((uniqueScores, score) => {
-                  // Check if the score for this user already exists in uniqueScores
-                  const existingScore = uniqueScores.find((s) => (
+                  const isDuplicate = uniqueScores.some((s) => (
                     s.value === score.value && s.player._id === score.player._id
                   ));
-                  if (!existingScore) {
-                    // If the score for this user doesn't exist, add it to uniqueScores
+                  if (!isDuplicate) {
                     uniqueScores.push(score);
                   }
                   return uniqueScores;
