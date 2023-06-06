@@ -50,10 +50,18 @@ const Profile = () => {
       </Row>
       <Row justify="center" className='profile' style={{ marginTop: '20px' }}>
         <Col>
-          <Title level={2}>Username: {userData.username}</Title>
-          <Title level={2}>Email: {userData.email}</Title>
-          <Title level={2}>High Score: {highscore}</Title>
-          <Title level={2}>Last Score: {lastscore}</Title>
+          <Title level={2} style={{ textAlign: 'center' }}>
+            Username: {userData.username}
+          </Title>
+          <Title level={2} style={{ textAlign: 'center' }}>
+            Email: {userData.email}
+          </Title>
+          <Title level={2} style={{ textAlign: 'center' }}>
+            High Score: {highscore}
+          </Title>
+          <Title level={2} style={{ textAlign: 'center' }}>
+            Last Score: {lastscore}
+          </Title>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button type='primary' danger onClick={DeleteScoreHandler}>
               Delete Scores
