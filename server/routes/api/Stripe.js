@@ -26,8 +26,8 @@ router.post('/create-checkout-session', async (req, res) => {
         // if your heroku deployment is https://recallrumble.herokuapp.com/, these links need to be changed to:
         // success_url: 'https://recallrumble.herokuapp.com/Donate',
         // cancel_url: 'https://recallrumble.herokuapp.com/Canceled',
-        success_url: 'https://recallrumble.herokuapp.com//Donate',
-        cancel_url: 'https://recallrumble.herokuapp.com//Canceled',
+        success_url: 'https://recallrumble.herokuapp.com/Donate',
+        cancel_url: 'https://recallrumble.herokuapp.com/Canceled',
     });
 
     res.json({ id: session.id });
