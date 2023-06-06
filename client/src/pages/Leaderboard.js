@@ -16,6 +16,19 @@ const Leaderboard = () => {
     return <h2>LOADING...</h2>;
   }
 
+  const uniqueScores = leaderboardData
+    .reduce((uniqueScores, score) => {
+      const isDuplicate = uniqueScores.some((s) => (
+        s.value === score.value && s.player._id === score.player._id
+      ));
+      if (!isDuplicate) {
+        uniqueScores.push(score);
+      }
+      return uniqueScores;
+    }, [])
+    .sort((a, b) => a.value - b.value) // Sort scores in ascending order
+    .slice(0, 10); // Limit to the top 10 scores
+
   return (
     <>
       <Row justify="center" align="middle" style={{ height: '100px', background: '#001529', color: '#fff' }}>
@@ -26,29 +39,17 @@ const Leaderboard = () => {
       <Row justify="center" className='leaderboard' style={{ marginTop: '20px' }}>
         <Col>
           <Title style={{ textAlign: 'center' }} level={2}>Top Players:</Title>
-          {leaderboardData.length > 0 ? (
+          {uniqueScores.length > 0 ? (
             <ul style={{ listStyleType: 'none', padding: 0, textAlign: 'center' }}>
-              {leaderboardData
-                .reduce((uniqueScores, score) => {
-                  const isDuplicate = uniqueScores.some((s) => (
-                    s.value === score.value && s.player._id === score.player._id
-                  ));
-                  if (!isDuplicate) {
-                    uniqueScores.push(score);
-                  }
-                  return uniqueScores;
-                }, [])
-                .sort((a, b) => a.value - b.value) // Sort scores in ascending order
-                .slice(0, 10) // Limit to the top 10 scores
-                .map((score, index) => (
-                  <li key={score.player._id}>
-                    <Title level={4}>
-                      <span>{index + 1}. </span>
-                      <span>{score.player.username}</span>
-                      <span> - Score: {score.value}</span>
-                    </Title>
-                  </li>
-                ))}
+              {uniqueScores.map((score, index) => (
+                <li key={score.player._id}>
+                  <Title level={4}>
+                    <span>{index + 1}. </span>
+                    <span>{score.player.username}</span>
+                    <span> - Score: {score.value}</span>
+                  </Title>
+                </li>
+              ))}
             </ul>
           ) : (
             <p>No data available</p>
