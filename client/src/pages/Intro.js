@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { Typography, Row, Col, Button, Modal, Tabs } from "antd";
 import SignUpForm from "../components/SignupForm";
 import LoginForm from "../components/LoginForm";
-import logo from "../images/logo.png";
+// import logo from "../images/logo.png";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
 const { Title } = Typography;
@@ -17,15 +17,15 @@ const Intro = () => {
         justify="center"
         align="middle"
         style={{
-          backgroundImage: `url(${logo})`,
-           backgroundPosition: 'center',
-          backgroundSize: 'cover',
-          backgroundRepeat: "no-repeat",
+          // backgroundImage: `url(${logo})`,
+          //  backgroundPosition: 'center',
+          // backgroundSize: 'cover',
+          // backgroundRepeat: "no-repeat",
           height: "100vh",
-          marginTop:'0px',
+          // marginTop:'0px',
           
-          //  background: "#000",
-          // color: "#fff",
+           background: "#000",
+          color: "#fff",
           textAlign: "center",
         }}
       >
@@ -50,7 +50,7 @@ const Intro = () => {
             <Link to="/Game">
               <Button
                 type="primary"
-                style={{ justifyContent: "center", marginTop: "1rem" }}
+                style={{ justifyContent: "center",background:"blue", marginTop: "1rem" }}
               >
                 Recall Rumble Time!
               </Button>
@@ -87,3 +87,67 @@ const Intro = () => {
 };
 
 export default Intro;
+// // import React from 'react';
+// import { DownOutlined } from '@ant-design/icons';
+// import type { MenuProps } from 'antd';
+// import { Dropdown, Space } from 'antd';
+
+// const items: MenuProps['items'] = [
+//   {
+//     key: '1',
+//     type: 'group',
+//     label: 'Group title',
+//     children: [
+//       {
+//         key: '1-1',
+//         label: '1st menu item',
+//       },
+//       {
+//         key: '1-2',
+//         label: '2nd menu item',
+//       },
+//     ],
+//   },
+//   {
+//     key: '2',
+//     label: 'sub menu',
+//     children: [
+//       {
+//         key: '2-1',
+//         label: '3rd menu item',
+//       },
+//       {
+//         key: '2-2',
+//         label: '4th menu item',
+//       },
+//     ],
+//   },
+//   {
+//     key: '3',
+//     label: 'disabled sub menu',
+//     disabled: true,
+//     children: [
+//       {
+//         key: '3-1',
+//         label: '5d menu item',
+//       },
+//       {
+//         key: '3-2',
+//         label: '6th menu item',
+//       },
+//     ],
+//   },
+// ];
+
+// const App: React.FC = () => (
+//   <Dropdown menu={{ items }}>
+//     <a onClick={(e) => e.preventDefault()}>
+//       <Space>
+//         Cascading menu
+//         <DownOutlined />
+//       </Space>
+//     </a>
+//   </Dropdown>
+// );
+
+// export default App;

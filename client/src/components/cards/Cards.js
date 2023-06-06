@@ -1,10 +1,10 @@
 import React, { useState, useEffect } from "react";
 import CardItem from "./CardItem";
-import { Row, Col, Statistic } from "antd";
+import { Row, Col} from "antd";// removed statistic
 import { useNavigate } from "react-router-dom";
 
 //change it to 45 sec
-const deadline = Date.now() + 1000 * 45; // Dayjs is also OK
+// const deadline = Date.now() + 1000 * 45; // Dayjs is also OK
 // declare props and initial state
 const Cards = ({
   updateActive,
@@ -24,13 +24,13 @@ const Cards = ({
     let number;
     switch (currentLevel) {
       case "beginner":
-        number = 8;
+        number = 6;
         break;
       case "intermediate":
         number = 12;
         break;
       case "expert":
-        number = 16;
+        number = 18;
         break;
       default:
         number = 8;
@@ -111,7 +111,7 @@ const Cards = ({
           // }, 1000);
 
           //This is the final score
-          const score = ((deadline - Date.now()) / 1000).toPrecision(2);
+          // const score = ((deadline - Date.now()) / 1000).toPrecision(2);
 
           //create a query to store the score into the database through which leaderboard will be populated
           navigate("/Leaderboard");
@@ -145,7 +145,7 @@ const Cards = ({
 
   return (
     <>
-      <Statistic.Countdown
+      {/* <Statistic.Countdown
         title="Time Left"
         style={{
           textAlign: "end",
@@ -155,7 +155,7 @@ const Cards = ({
         }}
         value={deadline}
         onFinish={onFinish}
-      />
+      /> */}
       <Row gutter={[16, 16]} style={{ margin: "16px" }}>
         {images.map((image, index) => (
           <Col key={index} xs={12} sm={8} md={8} lg={8} xl={6} xxl={4}>
