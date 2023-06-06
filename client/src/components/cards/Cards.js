@@ -216,7 +216,7 @@ const Cards = ({
         onCancel={handleCancel}
       >
         <div style={{ textAlign: 'center' }}>
-          <p>Score: {count}</p>
+          <p>Score: {count-1}</p>
           <Button type="primary" block style={{ marginTop: '10px' }} onClick={handleOk}>Leaderboard</Button>
           <Button type="primary" block style={{ marginTop: '10px' }} onClick={handleCancel}>Play Again</Button>
         </div>
