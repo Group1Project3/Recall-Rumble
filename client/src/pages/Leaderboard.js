@@ -30,14 +30,18 @@ const Leaderboard = () => {
             <ul style={{ listStyleType: 'none', padding: 0, textAlign: 'center' }}>
               {leaderboardData
                 .reduce((uniqueScores, score) => {
-                  // Check if the score is already in the uniqueScores array
-                  const existingScore = uniqueScores.find((s) => s.value === score.value);
+                  // Check if the score for this user already exists in uniqueScores
+                  const existingScore = uniqueScores.find((s) => (
+                    s.value === score.value && s.player._id === score.player._id
+                  ));
                   if (!existingScore) {
-                    // If the score is not already in the uniqueScores array, add it
+                    // If the score for this user doesn't exist, add it to uniqueScores
                     uniqueScores.push(score);
                   }
                   return uniqueScores;
                 }, [])
+                .sort((a, b) => a.value - b.value) // Sort scores in ascending order
+                .slice(0, 10) // Limit to the top 10 scores
                 .map((score, index) => (
                   <li key={score.player._id}>
                     <Title level={4}>
