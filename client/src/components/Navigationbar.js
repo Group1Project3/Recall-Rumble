@@ -22,22 +22,6 @@ const AppNavigationBar = () => {
     }
   };
 
-  // Define the dropdown menu to be used with Ant Design's Dropdown
-  const menu = (
-    <Menu onClick={handleMenuClick} mode="horizontal">
-      <Menu.Item key="game">
-        <Link to="/Game/beginner">Game</Link>
-      </Menu.Item>
-      <Menu.Item key="profile">
-        <Link to="/Profile">Profile</Link>
-      </Menu.Item>
-      <Menu.Item key="leaderboard">
-        <Link to="/Leaderboard">Leaderboard</Link>
-      </Menu.Item>
-      <Menu.Item key="logout">Logout</Menu.Item>
-    </Menu>
-  );
-
   const handleDifficultyLevel = ({ key }) => {
     window.location.reload()
   };
@@ -55,6 +39,38 @@ const AppNavigationBar = () => {
       </Menu.Item>
     </Menu>
   );
+
+  // Define the dropdown menu to be used with Ant Design's Dropdown
+  const menu = (
+    <Menu onClick={handleMenuClick} mode="horizontal">
+      {/* <Menu.Item key="game">
+        <Link to="/Game/beginner">Game</Link>
+      </Menu.Item> */}
+      <Menu.Item key="game">
+      <Dropdown overlay={difficultyLevel} placement="bottomRight">
+              <span
+                // style={{
+                //   color: "black",
+                //   paddingRight: "5px",
+                // }}
+              >
+                Game
+              </span>
+            </Dropdown>
+      </Menu.Item>
+      <Menu.Item key="profile">
+        <Link to="/Profile">Profile</Link>
+      </Menu.Item>
+      <Menu.Item key="leaderboard">
+        <Link to="/Leaderboard">Leaderboard</Link>
+      </Menu.Item>
+      <Menu.Item key="logout">Logout</Menu.Item>
+    </Menu>
+  );
+
+
+
+  
 
   // Return the component JSX
   return (
@@ -80,7 +96,7 @@ const AppNavigationBar = () => {
             Recall Rumble
           </span>
 
-          <Menu.Item key="dropdownDL">
+          {/* <Menu.Item key="dropdownDL">
             <Dropdown overlay={difficultyLevel} placement="bottomRight">
               <span
                 style={{
@@ -92,7 +108,7 @@ const AppNavigationBar = () => {
                 Difficulty Level
               </span>
             </Dropdown>
-          </Menu.Item>
+          </Menu.Item> */}
           <Menu.Item key="dropdown">
             <Dropdown overlay={menu} placement="bottomRight">
               <span
