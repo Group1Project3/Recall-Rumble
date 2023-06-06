@@ -25,22 +25,33 @@ const Leaderboard = () => {
       </Row>
       <Row justify="center" className='leaderboard' style={{ marginTop: '20px' }}>
         <Col>
-          <Title style={{ textAlign: 'center' }}level={2}>Top Players:</Title>
+          <Title style={{ textAlign: 'center' }} level={2}>Top Players:</Title>
           {leaderboardData.length > 0 ? (
             <ul style={{ listStyleType: 'none', padding: 0, textAlign: 'center' }}>
-              {leaderboardData.map((score, index) => (
-                <li key={score.player._id}>
-                  <Title level={4}>
-                    <span>{index + 1}. </span>
-                    <span>{score.player.username}</span>
-                    <span> - Score: {score.value}</span>
-                  </Title>
-                </li>
-              ))}
+              {leaderboardData
+                .reduce((uniqueScores, score) => {
+                  // Check if the score is already in the uniqueScores array
+                  const existingScore = uniqueScores.find((s) => s.value === score.value);
+                  if (!existingScore) {
+                    // If the score is not already in the uniqueScores array, add it
+                    uniqueScores.push(score);
+                  }
+                  return uniqueScores;
+                }, [])
+                .map((score, index) => (
+                  <li key={score.player._id}>
+                    <Title level={4}>
+                      <span>{index + 1}. </span>
+                      <span>{score.player.username}</span>
+                      <span> - Score: {score.value}</span>
+                    </Title>
+                  </li>
+                ))}
             </ul>
           ) : (
             <p>No data available</p>
           )}
+
         </Col>
       </Row>
     </>
