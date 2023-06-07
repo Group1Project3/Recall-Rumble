@@ -19,10 +19,11 @@ export const GET_ME = gql`
 `;
 
 export const CHECK_HS = gql`
-  {
-    checkHighScore {
+  query checkHighScore($player: ID!, $difficulty: String!) {
+    checkHighScore(player: $player, difficulty: $difficulty) {
       value
       highScore
+      difficulty
       player {
         _id
       }
@@ -34,9 +35,23 @@ export const LEADERBOARD = gql`
   {
     leaderboard {
       value
+      difficulty
       player {
         _id
         username
+      }
+    }
+  }
+`;
+
+export const PROFILE = gql`
+  query profile {
+    profile {
+      value
+      difficulty
+      highScore
+      player {
+        _id
       }
     }
   }

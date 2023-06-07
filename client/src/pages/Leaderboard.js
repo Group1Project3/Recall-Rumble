@@ -11,10 +11,23 @@ const Leaderboard = () => {
   // eslint-disable-next-line no-unused-vars
   const userData = meQuery.data?.me || {};
   const leaderboardData = leaderboardQuery.data?.leaderboard || [];
-
   if (meQuery.loading || leaderboardQuery.loading) {
     return <h2>LOADING...</h2>;
   }
+
+  const beginnerScores = []
+  const intermediateScores = []
+  const expertScores = []
+
+  leaderboardData.map(item => {
+    if(item.difficulty === "beginner") {
+      beginnerScores.push(item)
+    } else if(item.difficulty === "intermediate") {
+      intermediateScores.push(item)
+    } else if(item.difficulty === "expert") {
+      expertScores.push(item)
+    }
+  });
 
   const uniqueScores = leaderboardData
     .reduce((uniqueScores, score) => {

@@ -25,11 +25,11 @@ const Cards = ({
   const [updatePlayerHigh] = useMutation(UPDATE_PLAYER_HIGH);
   const [lastScore] = useMutation(LAST_SCORE);
 
-  const checkHS = useQuery(CHECK_HS);
   const getMe = useQuery(GET_ME);
-
-  const hsData = checkHS.data?.checkHighScore;
   const userData = getMe.data?.me || {};
+  const checkHS = useQuery(CHECK_HS, { variables: { player: userData._id, difficulty: currentLevel }});
+  const hsData = checkHS.data?.checkHighScore
+  
 
   const navigate = useNavigate();
 
@@ -100,7 +100,7 @@ const Cards = ({
         setShownCards((shownCards) => [...shownCards, curId]);
         setCurrCards([]);
         if (shownCards.length === images.length - 1) {
-          handleScoreSave(count, await CheckHighScore(count), userData._id);
+          handleScoreSave(count, await CheckHighScore(count), currentLevel, userData._id);
           showModal();
         }
       } else {
@@ -122,12 +122,13 @@ const Cards = ({
   };
 
 
-  const handleScoreSave = async (value, highScore, player) => {
+  const handleScoreSave = async (value, highScore, difficulty, player) => {
     try {
       await saveScore({
         variables: {
           value: value,
           highScore: highScore,
+          difficulty: difficulty,
           player: player
         }
       });
@@ -143,12 +144,14 @@ const Cards = ({
   };
 
   const CheckHighScore = async (score) => {
+    console.log(hsData)
     if (hsData !== null) {
       if (score < hsData.value) {
         try {
           await updateOldHigh({
             variables: {
-              player: userData._id,
+              difficulty: currentLevel,
+              player: userData._id
             }
           });
           await updatePlayerHigh({

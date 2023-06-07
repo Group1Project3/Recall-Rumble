@@ -13,11 +13,14 @@ const resolvers = {
       }
       throw new AuthenticationError('You need to be logged in!'); // Throw an error if not logged in
     },
-    checkHighScore: async (parent, args, context) => {
-      return Score.findOne({player: context.user._id, highScore: true})
+    checkHighScore: async (parent, { player, difficulty }, context) => {
+      return Score.findOne({player: player, difficulty: difficulty, highScore: true})
     },
     leaderboard: async (parent, args) => {
-      return Score.find({}).sort({value: 1}).limit(10).populate({path: "player", model: "User"})
+      return Score.find({}).sort({value: 1}).populate({path: "player", model: "User"})
+    },
+    profile: async (parent, args) => {
+      return Score.find({highScore: true}).populate({path: "player", model: "User"})
     }
   },
 
@@ -46,21 +49,22 @@ const resolvers = {
 
       return { token, user };
     },
-    saveScore: async (parent, {value, highScore, player}, context) => {
+    saveScore: async (parent, {value, highScore, difficulty, player}, context) => {
       return await Score.create({
         value,
         highScore,
+        difficulty,
         player
       })
     },
-    updateOldHigh: async (parent, { player }, context) => {
+    updateOldHigh: async (parent, { difficulty, player }, context) => {
       return await Score.findOneAndUpdate(
-        { player: player, highScore: true },
+        { difficulty: difficulty, player: player, highScore: true },
         { highScore: false },
         { new: true }
       )
     },
-    updatePlayerHigh: async (parent, { _id, highScore }, context) => {
+    updatePlayerHigh: async (parent, { _id, highScore, }, context) => {
       return await User.findOneAndUpdate(
         { _id:  _id},
         { highScore: highScore },
