@@ -95,7 +95,8 @@ One of the key advantages of web-based applications is that they can be accessed
 <a name="license"></a>
 
 ## License
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+This project is licensed under the MIT license. Click [here](https://opensource.org/licenses/MIT) for more information.<br>
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
