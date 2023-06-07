@@ -1,7 +1,7 @@
 import React from 'react';
 import { Typography, Row, Col, Button } from 'antd';
 import { useQuery, useMutation } from '@apollo/client';
-import { GET_ME } from '../utils/queries';
+import { GET_ME, PROFILE} from '../utils/queries';
 import { DELETE_SCORES } from '../utils/mutations';
 
 const { Title } = Typography;
@@ -9,21 +9,28 @@ const { Title } = Typography;
 const Profile = () => {
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.me || {};
-  let highscore = ""
-  let lastscore = ""
+  const profileQuery = useQuery(PROFILE)
+  const profileData = profileQuery.data?.profile || {}
+  let easyHighscore = "N/A"
+  let mediumHighscore = "N/A"
+  let hardHighscore = "N/A"
+
 
   // eslint-disable-next-line no-unused-vars
   const [deleteScores, { error }] = useMutation(DELETE_SCORES)
 
   // If no scores recorded, display N/A
-  if (userData.highScore === 99) {
-    highscore = "N/A"
-    lastscore = "N/A"
-  } else {
-    highscore = userData.highScore
-    lastscore = userData.lastScore
+  if (profileData !== undefined) {
+    for (let i = 0; i < profileData.length; i++) {
+      if(profileData[i].difficulty === 'beginner') {
+        easyHighscore = profileData[i].value
+      } else if(profileData[i].difficulty === 'intermediate') {
+        mediumHighscore = profileData[i].value
+      } else if(profileData[i].difficulty === 'expert') {
+        hardHighscore = profileData[i].value
+      }
+    }
   }
-
   if (loading) {
     return <h2>LOADING...</h2>;
   }
@@ -57,10 +64,16 @@ const Profile = () => {
             Email: {userData.email}
           </Title>
           <Title level={2} style={{ textAlign: 'center' }}>
-            High Score: {highscore}
+            Easy High Score: {easyHighscore}
           </Title>
           <Title level={2} style={{ textAlign: 'center' }}>
-            Last Score: {lastscore}
+            Medium High Score: {mediumHighscore}
+          </Title>
+          <Title level={2} style={{ textAlign: 'center' }}>
+            Hard High Score: {hardHighscore}
+          </Title>
+          <Title level={2} style={{ textAlign: 'center' }}>
+            Last Score: {userData.lastScore}
           </Title>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button type='primary' danger onClick={DeleteScoreHandler}>

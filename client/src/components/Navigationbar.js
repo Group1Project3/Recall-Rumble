@@ -18,15 +18,46 @@ const AppNavigationBar = () => {
   }, [location.pathname]);
 
   const handleMenuClick = ({ key }) => {
-    if (key === 'logout') {
+    if (key === "logout") {
       Auth.logout();
     }
   };
 
+  const handleDifficultyLevel = ({ key }) => {
+    window.location.reload()
+  };
+
+  const difficultyLevel = (
+    <Menu onClick={handleDifficultyLevel} mode="horizontal">
+      <Menu.Item key="easy">
+      <Link to="/Game/beginner">Easy</Link>
+      </Menu.Item>
+      <Menu.Item key="medium">
+      <Link to="/Game/intermediate">Medium</Link>
+      </Menu.Item>
+      <Menu.Item key="hard">
+      <Link to="/Game/expert">Hard</Link>
+      </Menu.Item>
+    </Menu>
+  );
+
+  // Define the dropdown menu to be used with Ant Design's Dropdown
   const menu = (
-    <Menu onClick={handleMenuClick} mode="vertical" selectedKeys={[selectedKey]}>
-      <Menu.Item key="/Game">
-        <Link to="/Game">Game</Link>
+    <Menu onClick={handleMenuClick} mode="horizontal">
+      {/* <Menu.Item key="game">
+        <Link to="/Game/beginner">Game</Link>
+      </Menu.Item> */}
+      <Menu.Item key="game">
+      <Dropdown overlay={difficultyLevel} placement="bottomRight">
+              <span
+                // style={{
+                //   color: "black",
+                //   paddingRight: "5px",
+                // }}
+              >
+                Game
+              </span>
+            </Dropdown>
       </Menu.Item>
       <Menu.Item key="/Profile">
         <Link to="/Profile">Profile</Link>
