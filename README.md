@@ -82,7 +82,7 @@ One of the key advantages of web-based applications is that they can be accessed
 > Database, models, mutations, and queries
 --- 
 [`Parth Mali`](https://github.com/Parth0415)
-> 
+> Javascript difficulty logic, Application styling and Brainstorming ideas
 ---
 [`Christina Barberi`](https://github.com/Christinaecb)
 > Javascript card logic, games model, game visuals with robohash
