@@ -76,7 +76,7 @@ One of the key advantages of web-based applications is that they can be accessed
 
 ### Tasks and Roles 
 [`Domenico Barberi`](https://github.com/DomenicoBarb)
-> 
+> Led the project with contributions including website framework, Stripe payment processing, Ant Design integration, route protection/authentication, and leaderboard logic
 ---
 [`Mason Lagrange`](https://github.com/masonlagrange)
 > Database, models, mutations, and queries
