@@ -79,7 +79,7 @@ One of the key advantages of web-based applications is that they can be accessed
 > 
 ---
 [`Mason Lagrange`](https://github.com/masonlagrange)
-> 
+> Database, models, mutations, and queries
 --- 
 [`Parth Mali`](https://github.com/Parth0415)
 > 
