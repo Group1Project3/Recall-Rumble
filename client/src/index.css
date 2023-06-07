@@ -166,7 +166,7 @@ h6 {
 
 @-webkit-keyframes color-change-2x {
   0% {
-    background: #000000;
+    background: #1a1a1a;
   }
   100% {
     background: #001529;
@@ -174,7 +174,7 @@ h6 {
 }
 @keyframes color-change-2x {
   0% {
-    background: #000000;
+    background: #1a1a1a;
   }
   100% {
     background: #001529;
