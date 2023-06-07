@@ -47,7 +47,7 @@ Recall Rumble is an interactive MERN stack single-page application that challeng
 - Card style memory game where you match images!
 - Leaderboard to compete with other players
 - User profile with user info, high score and last score
-- Donation page if you feel like making a donation!
+- Donation page if you feel like making a donation! (In test mode so funds do not actually deposit)
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
