@@ -25,28 +25,28 @@ const Cards = ({
   const [updatePlayerHigh] = useMutation(UPDATE_PLAYER_HIGH);
   const [lastScore] = useMutation(LAST_SCORE);
 
-  const checkHS = useQuery(CHECK_HS);
   const getMe = useQuery(GET_ME);
-
-  const hsData = checkHS.data?.checkHighScore;
   const userData = getMe.data?.me || {};
+  const checkHS = useQuery(CHECK_HS, { variables: { player: userData._id, difficulty: currentLevel }});
+  const hsData = checkHS.data?.checkHighScore
+  
 
   const navigate = useNavigate();
 
   useEffect(() => {
     let number;
     switch (currentLevel) {
-      case 'beginner':
+      case "beginner":
+        number = 6;
+        break;
+      case "intermediate":
         number = 12;
         break;
-      case 'intermediate':
-        number = 20;
-        break;
-      case 'expert':
-        number = 30;
+      case "expert":
+        number = 18;
         break;
       default:
-        number = 12;
+        number = 8;
     }
 
     let buffer = [];
@@ -71,18 +71,21 @@ const Cards = ({
   let curImgId = 0;
 
   let source;
-  switch (currentTheme) {
-    case 'robots':
-      source = '?set=set1';
+  switch (currentLevel) {
+    // easy
+    case "beginner":
+      source = "?set=set1";
       break;
-    case 'cats':
-      source = '?set=set4';
+    // hard
+    case "expert":
+      source = "?set=set4";
       break;
-    case 'monsters':
-      source = '?set=set2';
+    // medium
+    case "intermediate":
+      source = "?set=set2";
       break;
     default:
-      source = '?set=set1';
+      source = "?set=set1";
   }
 
   const cardClicked = async (cardDiv) => {
@@ -97,7 +100,7 @@ const Cards = ({
         setShownCards((shownCards) => [...shownCards, curId]);
         setCurrCards([]);
         if (shownCards.length === images.length - 1) {
-          handleScoreSave(count, await CheckHighScore(count), userData._id);
+          handleScoreSave(count, await CheckHighScore(count), currentLevel, userData._id);
           showModal();
         }
       } else {
@@ -115,15 +118,17 @@ const Cards = ({
   };
 
   const noClicking = () => {
-    console.log('nope!');
+    console.log("nope!");
   };
 
-  const handleScoreSave = async (value, highScore, player) => {
+
+  const handleScoreSave = async (value, highScore, difficulty, player) => {
     try {
       await saveScore({
         variables: {
           value: value,
           highScore: highScore,
+          difficulty: difficulty,
           player: player
         }
       });
@@ -139,12 +144,14 @@ const Cards = ({
   };
 
   const CheckHighScore = async (score) => {
+    console.log(hsData)
     if (hsData !== null) {
       if (score < hsData.value) {
         try {
           await updateOldHigh({
             variables: {
-              player: userData._id,
+              difficulty: currentLevel,
+              player: userData._id
             }
           });
           await updatePlayerHigh({

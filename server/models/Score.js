@@ -11,6 +11,11 @@ const scoreSchema = new Schema(
         required: true,
         default: false
     },
+    difficulty: {
+      type: String,
+      enum: ['beginner', 'intermediate', 'expert'],
+      required: true
+    },
     player: {
         type: Schema.Types.ObjectId,
         ref: "User"

@@ -49,6 +49,7 @@ Recall Rumble is an interactive MERN stack single-page application that challeng
 - User profile with user info, high score and last score
 - Donation page if you feel like making a donation! (In test mode so funds do not actually deposit)
 
+
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
 <a name="installation"></a>
@@ -76,6 +77,7 @@ One of the key advantages of web-based applications is that they can be accessed
 
 ### Tasks and Roles 
 [`Domenico Barberi`](https://github.com/DomenicoBarb)
+
 > Led the project with contributions including website framework, Stripe payment processing, Ant Design integration, route protection/authentication, and leaderboard logic
 ---
 [`Mason Lagrange`](https://github.com/masonlagrange)

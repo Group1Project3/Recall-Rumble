@@ -18,18 +18,20 @@ const typeDefs = gql`
     type Score {
         value: Int
         highScore: Boolean
+        difficulty: String
         player: User
     }
     type Query {
         me: User
-        checkHighScore: Score
+        checkHighScore(player: ID!, difficulty: String!): Score
         leaderboard: [Score]
+        profile: [Score]
     }
     type Mutation {
         login(email: String!, password: String!): Auth
         addUser(username: String!, email: String!, password: String!): Auth
-        saveScore(value: Int!, highScore: Boolean!, player: ID!): Score
-        updateOldHigh(player: ID!): Score
+        saveScore(value: Int!, highScore: Boolean!, difficulty: String, player: ID!): Score
+        updateOldHigh(difficulty: String, player: ID!): Score
         updatePlayerHigh(_id: ID!, highScore: Int!): User
         lastScore(_id: ID!, lastScore: Int!): User
         deleteScores(player: ID!): User
