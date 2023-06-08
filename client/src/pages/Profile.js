@@ -10,7 +10,7 @@ const Profile = () => {
   const { loading, data } = useQuery(GET_ME);
   const userData = data?.me || {};
   const profileQuery = useQuery(PROFILE)
-  const profileData = profileQuery.data?.profile || {}
+  const profileData = profileQuery.data?.profile || undefined
   let easyHighscore = "N/A"
   let mediumHighscore = "N/A"
   let hardHighscore = "N/A"
