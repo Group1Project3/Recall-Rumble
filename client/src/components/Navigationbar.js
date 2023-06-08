@@ -8,6 +8,10 @@ import Auth from "../utils/auth";
 
 const { TabPane } = Tabs;
 
+const isGamePage = pathname => {
+  return pathname.startsWith('/Game');
+};
+
 const AppNavigationBar = () => {
   const location = useLocation(); // Hook to access the current location
 
@@ -22,6 +26,8 @@ const AppNavigationBar = () => {
   const handleDifficultyLevel = ({ key }) => {
     window.location.reload();
   };
+
+  const selectedKey = isGamePage(location.pathname) ? '/Game' : location.pathname;
 
   const difficultyLevel = (
     <Menu onClick={handleDifficultyLevel} selectedKeys={[location.pathname]}>
@@ -38,8 +44,8 @@ const AppNavigationBar = () => {
   );
 
   const menu = (
-    <Menu onClick={handleMenuClick} selectedKeys={[location.pathname]}>
-      <Menu.Item key="/Game/beginner">
+    <Menu onClick={handleMenuClick} selectedKeys={[selectedKey]}>
+      <Menu.Item key="/Game">
         <Dropdown overlay={difficultyLevel} trigger={["hover"]} placement="rightTop">
           <span>Game</span>
         </Dropdown>
@@ -63,7 +69,7 @@ const AppNavigationBar = () => {
         <Menu
           theme="dark"
           mode="horizontal"
-          selectedKeys={[location.pathname]} // Highlight the active page
+          selectedKeys={[selectedKey]} // Highlight the active page
           style={{ lineHeight: "64px", justifyContent: "space-between" }}
         >
           <span
