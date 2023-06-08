@@ -79,7 +79,7 @@ let lastscore = userData.lastScore
           <Title level={2} style={{ textAlign: 'center' }}>
             Last Score: {lastscore}
           </Title>
-          <div style={{ display: 'flex', justifyContent: 'center' }}>
+          <div style={{ display: 'flex', justifyContent: 'center', marginBottom: '40px' }}>
             <Button type='primary' danger onClick={DeleteScoreHandler}>
               Delete Scores
             </Button>

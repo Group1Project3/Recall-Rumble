@@ -113,7 +113,7 @@ const Leaderboard = () => {
             <p>No data available</p>
           )}
         </Col>
-        <Col style={{ marginTop: '20px', marginLeft: '40px', marginRight: '40px' }}>
+        <Col style={{ marginTop: '20px', marginLeft: '40px', marginRight: '40px', marginBottom: '30px' }}>
           <Title style={{ textAlign: 'center' }} level={2}>Hard Highscores:</Title>
           {uniqueScoresHard.length > 0 ? (
             <ul style={{ listStyleType: 'none', padding: 0, textAlign: 'center' }}>
