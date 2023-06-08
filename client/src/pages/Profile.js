@@ -11,6 +11,10 @@ const Profile = () => {
   const userData = data?.me || {};
   const profileQuery = useQuery(PROFILE)
   const profileData = profileQuery.data?.profile || undefined
+let lastscore = userData.lastScore
+  if(userData.lastScore === 99) {
+    lastscore = "N/A"
+  }
   let easyHighscore = "N/A"
   let mediumHighscore = "N/A"
   let hardHighscore = "N/A"
@@ -73,7 +77,7 @@ const Profile = () => {
             Hard High Score: {hardHighscore}
           </Title>
           <Title level={2} style={{ textAlign: 'center' }}>
-            Last Score: {userData.lastScore}
+            Last Score: {lastscore}
           </Title>
           <div style={{ display: 'flex', justifyContent: 'center' }}>
             <Button type='primary' danger onClick={DeleteScoreHandler}>
