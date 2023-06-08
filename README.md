@@ -47,7 +47,8 @@ Recall Rumble is an interactive MERN stack single-page application that challeng
 - Card style memory game where you match images!
 - Leaderboard to compete with other players
 - User profile with user info, high score and last score
-- Donation page if you feel like making a donation!
+- Donation page if you feel like making a donation! (In test mode so funds do not actually deposit)
+
 
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
@@ -76,13 +77,14 @@ One of the key advantages of web-based applications is that they can be accessed
 
 ### Tasks and Roles 
 [`Domenico Barberi`](https://github.com/DomenicoBarb)
-> 
+
+> Led the project with contributions including website framework, Stripe payment processing, Ant Design integration, route protection/authentication, and leaderboard logic
 ---
 [`Mason Lagrange`](https://github.com/masonlagrange)
-> 
+> Database, models, mutations, and queries
 --- 
 [`Parth Mali`](https://github.com/Parth0415)
-> 
+> Javascript difficulty logic, Application styling and Brainstorming ideas
 ---
 [`Christina Barberi`](https://github.com/Christinaecb)
 > Javascript card logic, games model, game visuals with robohash
@@ -95,7 +97,8 @@ One of the key advantages of web-based applications is that they can be accessed
 <a name="license"></a>
 
 ## License
-Distributed under the MIT License. See `LICENSE.txt` for more information.
+This project is licensed under the MIT license. Click [here](https://opensource.org/licenses/MIT) for more information.<br>
+![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)
   
 <p align="right">(<a href="#readme-top">back to top</a>)</p>
 
