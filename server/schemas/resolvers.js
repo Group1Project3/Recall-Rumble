@@ -19,8 +19,8 @@ const resolvers = {
     leaderboard: async (parent, args) => {
       return Score.find({}).sort({value: 1}).populate({path: "player", model: "User"})
     },
-    profile: async (parent, args) => {
-      return Score.find({highScore: true}).populate({path: "player", model: "User"})
+    profile: async (parent, args, context) => {
+      return Score.find({player: context.user._id, highScore: true}).populate({path: "player", model: "User"})
     }
   },
 
