@@ -16,6 +16,10 @@ h6 {
   font-style: italic;
 }
 
+.mem-card:hover {
+  cursor: pointer;
+}
+
 .mem-card {
   -webkit-animation: slit-in-diagonal-1 0.6s ease-out both;
   animation: slit-in-diagonal-1 0.6s ease-out both;
