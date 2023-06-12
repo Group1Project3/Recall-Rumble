@@ -159,6 +159,11 @@ h6 {
   }
 }
 
+.pageheaderGame {
+  -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+  animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
+}
+
 .pageheader {
   -webkit-animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
   animation: tracking-in-expand 0.7s cubic-bezier(0.215, 0.610, 0.355, 1.000) both;
@@ -216,5 +221,17 @@ h6 {
 
   100% {
     background: #001529;
+  }
+}
+
+@media screen and (max-width: 640px) {
+  .pageheaderGame {
+    font-size: 30px !important;
+  }
+}
+
+@media screen and (max-width: 300px) {
+  .pageheaderGame {
+    font-size: 15px !important;
   }
 }
