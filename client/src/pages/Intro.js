@@ -4,6 +4,7 @@ import SignUpForm from "../components/SignupForm";
 import LoginForm from "../components/LoginForm";
 import Auth from "../utils/auth";
 import { Link } from "react-router-dom";
+import logo from "../assets/images/logo.png";
 const { Title } = Typography;
 const { TabPane } = Tabs;
 
@@ -14,10 +15,11 @@ const Intro = () => {
     <>
       <Row justify="center" className="bg" align="middle" style={{ height: "100vh", color: "#fff", textAlign: "center" }}>
         <Col>
-          <img src="../assets/images/logo.png" alt="Logo" style={{ width: "50%", maxWidth: "300px", margin: "0 auto" }} />
+          
           <Title level={1} className="pageheader" style={{ color: "#fff", textAlign: "center", width: "80vw" }}>
             {Auth.loggedIn() ? "Now that you have an account," : "Hey there, welcome to Recall Rumble!"}
           </Title>
+          <img src={logo} alt="Logo" className='logo' style={{ width: "50%", maxWidth: "300px", marginTop:'10px', marginBottom:'20px', marginLeft: 'auto', marginRight: 'auto' }} />
           <Title level={1} className="pageheader" style={{ color: "#fff", textAlign: "center", width: "80vw" }}>
             {Auth.loggedIn() ? "Press the button below to play!" : "Click the button below to login or to make an account!"}
           </Title>

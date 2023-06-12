@@ -16,6 +16,37 @@ h6 {
   font-style: italic;
 }
 
+.logo {
+  border-radius: 15px;
+  -webkit-animation: slit-in-diagonal-1 0.5s ease-out both, shadow-drop-center 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+  animation: slit-in-diagonal-1 0.5s ease-out both, shadow-drop-center 2.5s cubic-bezier(0.250, 0.460, 0.450, 0.940) both;
+}
+
+@-webkit-keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.35);
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.35);
+  }
+}
+
+@keyframes shadow-drop-center {
+  0% {
+    -webkit-box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+    box-shadow: 0 0 0 0 rgba(255, 255, 255, 0);
+  }
+
+  100% {
+    -webkit-box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.35);
+    box-shadow: 0 0 30px 10px rgba(255, 255, 255, 0.35);
+  }
+}
+
+
 .mem-card:hover {
   cursor: pointer;
 }
@@ -172,14 +203,17 @@ h6 {
   0% {
     background: #1a1a1a;
   }
+
   100% {
     background: #001529;
   }
 }
+
 @keyframes color-change-2x {
   0% {
     background: #1a1a1a;
   }
+
   100% {
     background: #001529;
   }
